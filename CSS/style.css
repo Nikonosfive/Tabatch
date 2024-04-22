@@ -385,14 +385,14 @@
 
     .button-select {
       color: var(--mainColor);
-       	font-family : inherit;
+      font-family: inherit;
       background-color: var(--bgColor);
       border-color: var(--mainColor);
       padding: 0.6rem;
       border: 0.15rem solid;
       margin: 0.2rem;
       border-radius: 2rem;
-      font-size: 1.2rem;
+      font-size: 1.05rem;
       opacity: 100%;
       box-shadow: none;
       width: 4rem;
