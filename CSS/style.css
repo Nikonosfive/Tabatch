@@ -18,7 +18,8 @@
     }
     
     html:has(#cursive:checked){
-      font-family: "cursive";
+      font-family: "Noto Sans";
+      font-weight: 900;
     }
     
     html:has(#notosans:checked){
