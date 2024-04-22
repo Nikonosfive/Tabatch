@@ -352,7 +352,8 @@
       margin: 0.2rem;
       border-radius: 1.4rem;
       font-size: 0.8rem;
-       	font-family : inherit;
+      font-family: inherit;
+      font-weight: inherit;
       border-color: var(--bgColor);
       border: none;
       opacity: 80%;
@@ -387,6 +388,7 @@
     .button-select {
       color: var(--mainColor);
       font-family: inherit;
+      font-weight: inherit;
       background-color: var(--bgColor);
       border-color: var(--mainColor);
       padding: 0.6rem;
