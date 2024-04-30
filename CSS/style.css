@@ -5,7 +5,7 @@
       margin: 0.2rem;
       border-radius: 1.4rem;
       font-size: 0.8rem;
-       	font-family : inherit;
+      font-family : inherit;
       border-color: var(--bgColor);
       border: none;
       opacity: 80%;
@@ -196,7 +196,7 @@
       border-radius: 50%;
       box-shadow: 0 0 5px rgb(9 9 9 / 20%);
       background-color: #fff;
-      content: "";
+          content: "";
       transition: left 0.4s;
     }
 
@@ -263,34 +263,16 @@
       padding-left: 0;
     }
 
-    #card {
-      margin: auto;
-      width: 40vw;
-      perspective: 0px;
-      transform-style: preserve-3d;
-      transition: transform 0s;
-    }
-
-    .card-front,
-    .card-back {
-      margin: auto;
-      width: 40vw;
-      position: absolute;
-      backface-visibility: hidden;
+    .WATday {
       padding-top: 20px;
-      text-align: center;
-    }
-
-    .card-front {
-      transform: rotateY(180deg);
-    }
-
-    .mekuru {
-      transform: rotateY(180deg);
+      margin: auto;
+      width: 40vw;
+      font-size: 4vw;
+      cursor: pointer;
     }
 
     .area>input:checked+label {
-      font-weight: bold;
+      font-weight: 900;
     }
 
     * {
@@ -352,8 +334,7 @@
       margin: 0.2rem;
       border-radius: 1.4rem;
       font-size: 0.8rem;
-      font-family: inherit;
-      font-weight: inherit;
+       	font-family : inherit;
       border-color: var(--bgColor);
       border: none;
       opacity: 80%;
@@ -377,7 +358,7 @@
       opacity: 80%;
       cursor: pointer;
       width: 3rem;
-       	font-family : inherit;
+      font-family : inherit;
       height: 2rem;
     }
 
@@ -387,7 +368,7 @@
 
     .button-select {
       color: var(--mainColor);
-      font-family: inherit;
+      font-family : inherit;
       font-weight: inherit;
       background-color: var(--bgColor);
       border-color: var(--mainColor);
@@ -463,7 +444,7 @@
     }
 
     .touhaba {
-      font-family: 'Courier New', Consolas, monospace;
+      font-family: 'Courier New', 'Consolas', 'monospace';
       font-size: 1rem;
       margin: 0.3rem;
     }
