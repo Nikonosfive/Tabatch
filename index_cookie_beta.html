@@ -118,32 +118,27 @@
               </p>
               </p>
             </li>
- <li class="dropdown__item">
+            <li class="dropdown__item">
               <p class="a-contents">
-              <p class="yohaku"><a>Font Settings</a>
-                <input type="radio" name="radioName" id="cursive" style="display: none;"></input><label for="cursive" class="fontlabel">BOLD</label>
- <input type="radio" name="radioName" id="notosans" style="display: none;"></input><label for="notosans" class="fontlabel">Noto Sans</label>
-                  <input type="radio" name="radioName" id="serif" style="display: none;"></input><label for="serif" class="fontlabel">Serif</label>
-                
-              </p>
+                <p class="yohaku" id="fontSetting"><a>Font Settings</a>
+                  <input type="radio" name="font" id="cursive" style="display: none;"></input><label for="cursive" class="fontlabel">BOLD</label>
+                  <input type="radio" name="font" id="notosans" style="display: none;"></input><label for="notosans" class="fontlabel">Noto Sans</label>
+                  <input type="radio" name="font" id="serif" style="display: none;"></input><label for="serif" class="fontlabel">Serif</label>
+                </p>
               </p>
             </li>
             <li class="dropdown__item">
               <p class="a-contents">
-              <p class="yohaku">
-                <a class="inside" href="https://sites.google.com/view/tadr-tech/blog/htu">使い方 How to use</a>｜<a class="inside" href="https://sites.google.com/view/tadr-tech/blog">Release Notes</a>
-                <br>
-                <a class="inside">Tabatch by TADR, SEI2423</a>｜
-                <a class="inside">Ver.7の機能試験配信中です</a>｜
-                <a class="inside">Ver.6.30.0(2024.4.21)</a><br>
-                <a class="inside">音源：</a><a class="inside" href="https://amachamusic.chagasi.com">甘茶の音楽工房様</a>
-                 
-              </p>
+                <p class="yohaku">
+                  <a class="inside" href="https://sites.google.com/view/tadr-tech/blog/htu">使い方 How to use</a>｜<a class="inside" href="https://sites.google.com/view/tadr-tech/blog">Release Notes</a>
+                  <br>
+                  <a class="inside">Tabatch by TADR, SEI2423</a>｜
+                  <a class="inside">Ver.7の機能試験配信中です</a>｜
+                  <a class="inside">Ver.6.30.0(2024.4.21)</a><br>
+                  <a class="inside">音源：</a><a class="inside" href="https://amachamusic.chagasi.com">甘茶の音楽工房様</a>
+                </p>
               </p>
             </li>
-            <li class="dropdown__item"></li>
-            <li class="dropdown__item"></li>
-            <li class="dropdown__item"></li>
           </ul>
         </div>
       </div>
@@ -1372,8 +1367,18 @@ addEventListener('load', (function() {
 
   $STWmtime.style.display = COOKIE.get('STWmtimestyledisplay') || 'inline-block';
   document.getElementById('swapDigits').checked = $STWmtime.style.display != 'none';
+
   $STWLapDisp.style.display = COOKIE.get('STWLapDispstyledisplay') || 'inline-block';
   document.getElementById('lapOff').checked = $STWLapDisp.style.display != 'inline-block';
+
+  switch(COOKIE.get('font')){
+    case 'BOLD':
+      $fontSettingBtns[0].checked = true;
+      break;
+    case 'Serif':
+      $fontSettingBtns[2].checked = true;
+      break;
+  }
 
   setInterval(main);
 }));
@@ -1388,6 +1393,8 @@ const $setTabBtn = document.getElementById('setTabBtn');
 const ANHOUR = 3600000;
 const AMIN = 60000;
 const ASEC = 1000;
+
+const $fontSettingBtns = [...document.querySelectorAll('#fontSetting > input[name="font"]')];
 
 function zeropad(num, digits = 2, right = false) {
   const zeros = '0'.repeat(digits - 1);
@@ -1530,6 +1537,10 @@ document.getElementById('fullScreen').addEventListener('click', function() {
 document.getElementById('exitFullScreen').addEventListener('click', function() {
   document.exitFullscreen();
 });
+
+$fontSettingBtns.forEach($fontBtn => $fontBtn.addEventListener('click', e => {
+  document.cookie = `font=${e.target.nextElementSibling.textContent}`;
+}));
 
 function setTabsKeyPress(key) {
   if(key == 'Escape') {
