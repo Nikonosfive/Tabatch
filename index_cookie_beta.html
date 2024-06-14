@@ -1351,7 +1351,7 @@ addEventListener('load', (function() {
   if(TIM.moving){
     TIMBtnsDisabled('start');
   } else {
-    if(TIM.time) {
+    if(TIM.time != TIM.setTime) {
       TIMBtnsDisabled('stop');
     } else {
       TIMBtnsDisabled('reset');
@@ -1805,7 +1805,7 @@ function TIMBtnsDisabled(when) {
 
 
 function TIMStart() {
-  TIMBtnsDisabled('strat');
+  TIMBtnsDisabled('start');
 
   TIM.moving = 1;
   TIM.endTime = +new Date() + TIM.time;
