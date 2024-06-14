@@ -1326,7 +1326,17 @@ addEventListener('load', (function() {
   STW.startTime = +COOKIE.get('STWstartTime') || 0;
   STW.time = +COOKIE.get('STWtime') || 0;
   STW.moving = +COOKIE.get('STWmoving') || 0;
-  
+
+  if(STW.moving){
+    STWBtnsDisabled('start');
+  } else {
+    if(STW.time) {
+      STWBtnsDisabled('stop');
+    } else {
+      STWBtnsDisabled('reset');
+    }
+  }
+
   WAT.lang = COOKIE.get('lang') || 'ja';
   
   TIM.setTime = +COOKIE.get('TIMsetTime') || 30000;
@@ -1337,8 +1347,15 @@ addEventListener('load', (function() {
   $setTIMhours[0].value = $setTIMhours[1].value = TIM.setTime / ANHOUR | 0;
   $setTIMmins[0].value = $setTIMmins[1].value = (TIM.setTime % ANHOUR) / AMIN | 0;
   $setTIMsecs[0].value = $setTIMsecs[1].value = (TIM.setTime % AMIN) / ASEC | 0;
-  if(TIM.moving) {
-    $setTIMGroup.style.visibility = 'hidden';
+
+  if(TIM.moving){
+    TIMBtnsDisabled('start');
+  } else {
+    if(TIM.time) {
+      TIMBtnsDisabled('stop');
+    } else {
+      TIMBtnsDisabled('reset');
+    }
   }
 
   STWDisplay(true);
@@ -1568,11 +1585,30 @@ const $STWStopBtn = document.getElementById('STWStopBtn');
 const $STWResetBtn = document.getElementById('STWResetBtn');
 const $STWLapBtn = document.getElementById('STWLapBtn');
 
+function STWBtnsDisabled(when) {
+  switch(when) {
+    case 'start':
+      $STWStartBtn.disabled = true;
+      $STWStopBtn.disabled = false;
+      $STWResetBtn.disabled = false;
+      $STWLapBtn.disabled = false;
+      break;
+    case 'stop':
+      $STWStartBtn.disabled = false;
+      $STWStopBtn.disabled = true;
+      $STWResetBtn.disabled = false;
+      $STWLapBtn.disabled = true;
+      break;
+    case 'reset':
+      $STWStartBtn.disabled = false;
+      $STWStopBtn.disabled = true;
+      $STWResetBtn.disabled = true;
+      $STWLapBtn.disabled = true;
+  }
+}
+
 function STWStart() {
-  $STWStartBtn.disabled = true;
-  $STWStopBtn.disabled = false;
-  $STWResetBtn.disabled = false;
-  $STWLapBtn.disabled = false;
+  STWBtnsDisabled('start');
 
   STW.moving = 1;
   STW.startTime = new Date() - STW.time;
@@ -1581,10 +1617,7 @@ function STWStart() {
 }
 
 function STWStop() {
-  $STWStartBtn.disabled = false;
-  $STWStopBtn.disabled = true;
-  $STWResetBtn.disabled = false;
-  $STWLapBtn.disabled = true;
+  STWBtnsDisabled('stop');
 
   STW.moving = 0;
   document.cookie = 'STWmoving=0';
@@ -1593,10 +1626,7 @@ function STWStop() {
 function STWReset() {
   if($STWResetBtn.disabled) return;
 
-  $STWStartBtn.disabled = false;
-  $STWStopBtn.disabled = true;
-  $STWResetBtn.disabled = true;
-  $STWLapBtn.disabled = true;
+  STWBtnsDisabled('reset');
 
   STW.startTime = 0;
   STW.time = 0;
@@ -1751,12 +1781,31 @@ const $TIMStopBtn = document.getElementById('TIMStopBtn');
 const $TIMResetBtn = document.getElementById('TIMResetBtn');
 const $setTIMGroup = document.getElementById('setTIMGroup');
 
-function TIMStart() {
+function TIMBtnsDisabled(when) {
+  switch(when) {
+    case 'start':
+      $TIMStartBtn.disabled = true;
+      $TIMStopBtn.disabled = false;
+      $TIMResetBtn.disabled = false;
+      $setTIMGroup.style.visibility = 'hidden';
+      break;
+    case 'stop':
+      $TIMStartBtn.disabled = false;
+      $TIMStopBtn.disabled = true;
+      $TIMResetBtn.disabled = false;
+      $setTIMGroup.style.visibility = '';
+      break;
+    case 'reset':
+      $TIMStartBtn.disabled = false;
+      $TIMStopBtn.disabled = true;
+      $TIMResetBtn.disabled = true;
+      $setTIMGroup.style.visibility = '';
+  }
+}
 
-  $TIMStartBtn.disabled = true;
-  $TIMStopBtn.disabled = false;
-  $TIMResetBtn.disabled = false;
-  $setTIMGroup.style.visibility = 'hidden';
+
+function TIMStart() {
+  TIMBtnsDisabled('strat');
 
   TIM.moving = 1;
   TIM.endTime = +new Date() + TIM.time;
@@ -1765,20 +1814,14 @@ function TIMStart() {
 }
 
 function TIMStop() {
-  $TIMStartBtn.disabled = false;
-  $TIMStopBtn.disabled = true;
-  $TIMResetBtn.disabled = false;
-  $setTIMGroup.style.visibility = '';
+  TIMBtnsDisabled('stop');
 
   TIM.moving = 0;
   document.cookie = 'TIMmoving=0';
 }
 
 function TIMReset() {
-  $TIMStartBtn.disabled = false;
-  $TIMStopBtn.disabled = true;
-  $TIMResetBtn.disabled = true;
-  $setTIMGroup.style.visibility = '';
+  TIMBtnsDisabled('reset');
 
   TIM.moving = 0;
   TIM.time = TIM.setTime;
