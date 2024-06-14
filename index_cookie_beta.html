@@ -98,11 +98,11 @@
               <p class="a-contents">
               <p class="yohaku"><a>Swap Digits</a>
                 <label class="toggle-button">
-                  <input type="checkbox" onclick="decimalPointDisplay()" style="cursor: pointer;">
+                  <input type="checkbox" onclick="decimalPointDisplay()" id="swapDigits" style="cursor: pointer;">
                 </label>
                 <a>Lap OFF</a>
                 <label class="toggle-button">
-                  <input type="checkbox" onclick="LapDisplay()">
+                  <input type="checkbox" onclick="LapDisplay()" id="lapOff">
                 </label>
               </p>
               </p>
@@ -1371,7 +1371,9 @@ addEventListener('load', (function() {
   }
 
   $STWmtime.style.display = COOKIE.get('STWmtimestyledisplay') || 'inline-block';
+  document.getElementById('swapDigits').checked = $STWmtime.style.display != 'none';
   $STWLapDisp.style.display = COOKIE.get('STWLapDispstyledisplay') || 'inline-block';
+  document.getElementById('lapOff').checked = $STWmtime.style.display != 'inline-block';
 
   setInterval(main);
 }));
