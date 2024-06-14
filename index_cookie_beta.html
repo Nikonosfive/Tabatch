@@ -1373,7 +1373,7 @@ addEventListener('load', (function() {
   $STWmtime.style.display = COOKIE.get('STWmtimestyledisplay') || 'inline-block';
   document.getElementById('swapDigits').checked = $STWmtime.style.display != 'none';
   $STWLapDisp.style.display = COOKIE.get('STWLapDispstyledisplay') || 'inline-block';
-  document.getElementById('lapOff').checked = $STWLapDisp.style.display == 'none';
+  document.getElementById('lapOff').checked = $STWLapDisp.style.display != 'inline-block';
 
   setInterval(main);
 }));
