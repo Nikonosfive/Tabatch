@@ -96,15 +96,26 @@
             </li>
             <li class="dropdown__item">
               <p class="a-contents">
-              <p class="yohaku"><a>Swap Digits</a>
-                <label class="toggle-button">
-                  <input type="checkbox" onclick="decimalPointDisplay()" id="swapDigits" style="cursor: pointer;">
-                </label>
-                <a>Lap OFF</a>
-                <label class="toggle-button">
-                  <input type="checkbox" onclick="LapDisplay()" id="lapOff">
-                </label>
+                <p class="yohaku">
+                  <a>Swap Digits</a>
+                  <label class="toggle-button">
+                    <input type="checkbox" onclick="decimalPointDisplay()" id="swapDigits" style="cursor: pointer;">
+                  </label>
+                  <a>Lap OFF</a>
+                  <label class="toggle-button">
+                    <input type="checkbox" onclick="LapDisplay()" id="lapOff">
+                  </label>
+                </p>
               </p>
+            </li>
+            <li class="dropdown__item sei_only">
+              <p class="a-contents">
+                <p class="yohaku">
+                  <a>Time on Tab</a>
+                  <label class="toggle-button">
+                    <input type="checkbox" onclick="dispTimeOnTab ^= 1;updateTitle('');" style="cursor: pointer;">
+                  </label>
+                </p>
               </p>
             </li>
             <li class="dropdown__item">
@@ -1428,12 +1439,14 @@ function changeTab(nextTab) {
   switch(nextTab) {
     case 'STW':
       $STWTab.checked = true;
+      updateTitle(STWtime.innerHTML);
       break;
     case 'WAT':
       $WATTab.checked = true;
       break;
     case 'TIM':
       $TIMTab.checked = true;
+      updateTitle($TIMhour.parentNode.parentNode.innerText);
       break;
   }
 }
@@ -1587,9 +1600,13 @@ function STWDisplay(force = false) {
   const min = zeropad((STW.time % ANHOUR) / AMIN | 0);
   const sec = zeropad((STW.time % AMIN) / ASEC | 0);
   const msec = zeropad(STW.time % ASEC, 3);
+  const time = `${hour}:${min}:${sec}`;
 
-  $STWtime.innerHTML = `${hour}:${min}:${sec}`;
   $STWmtime.innerHTML = `.${msec}`;
+
+  if($STWtime.innerHTML == time) return;
+  $STWtime.innerHTML = time;
+  if($STWTab.checked) updateTitle($STWtime.innerHTML);
 }
 //---------------button---------------
 
@@ -1722,6 +1739,8 @@ function WATDisplay() {
 
   if($WATtime.innerHTML != time) {
     $WATtime.innerHTML = time;
+
+    if($WATTab.checked) updateTitle(time);
   }
 
   if($WATday.innerHTML != day) {
@@ -1780,6 +1799,8 @@ function TIMDisplay(force = false) {
 
   if($TIMsec.innerHTML == sec) return;
   $TIMsec.innerHTML = sec;
+
+  if($TIMTab.checked) updateTitle(`${hour}:${min}:${sec}`);
 
   if($TIMmin.innerHTML == min) return;
   $TIMmin.innerHTML = min;
@@ -1921,59 +1942,54 @@ function main() {
 }
 
 body#Sei2423 {
-/*#bb5f5d, #e2caca*/
-    --mainColor: #b25452 !important;
-    --bgColor: #d7bebe !important;
+  --mainColor: #b25452 !important;
+  --bgColor: #d7bebe !important;
 }
 #Sei2423 .toggle-button::after {
-    background-color: var(--bgColor) !important;
-    border: solid 1px var(--mainColor) !important;
-    box-sizing: border-box;
-    box-shadow: none;
+  background-color: var(--bgColor) !important;
+  border: solid 1px var(--mainColor) !important;
+  box-sizing: border-box;
+  box-shadow: none;
 }
 #Sei2423 .toggle-button {
-    background-color: var(--bgColor) !important;
-    border: solid 2px !important;
+  background-color: var(--bgColor) !important;
+  border: solid 2px !important;
 }
 #Sei2423 .toggle-button:has(:checked) {
-    background-color: var(--mainColor) !important;
-    border: solid 2px !important;
+  background-color: var(--mainColor) !important;
+  border: solid 2px !important;
 }
 #Sei2423 li.dropdown__item:is(:nth-child(2),:nth-child(3)) {
-    display: none;
+  display: none;
 }
-#Sei2423 li.dropdown__item:is(:nth-child(5),:nth-child(6)) :is(button, label) {
-    background: linear-gradient(90deg, var(--mainColor) 50%, var(--bgColor) 50%) !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    background-size: 200% 200% !important;
-    overflow: hidden !important;
-    background-position: 0% !important;
-    transition: all 0.5s ease !important;
-    border: var(--mainColor) 1px solid !important;
-    position: relative;
+#Sei2423 li.dropdown__item:is(:nth-child(6),:nth-child(7)) :is(button, label) {
+  background: linear-gradient(90deg, var(--mainColor) 50%, var(--bgColor) 50%) !important;
+  background-size: 201% 100% !important;
+  overflow: hidden !important;
+  background-position: 0% !important;
+  transition: all 0.6s ease !important;
+  border: var(--mainColor) 1px solid !important;
+  position: relative;
 }
-
-#Sei2423 li.dropdown__item:is(:nth-child(5),:nth-child(6)) :is(button, label):hover {
-    background-position: 100% !important;
+#Sei2423 li.dropdown__item:is(:nth-child(6),:nth-child(7)) :is(button, label):hover {
+  background-position: 100% !important;
+  color: var(--mainColor);
 }
-
-#Sei2423 li.dropdown__item:is(:nth-child(5),:nth-child(6)) :is(button, label)::after {
-    content: "a";
-    color: red;
-    width: 100px !important;
-    height: inherit;
-    background-color: red !important;
-    position: relative;
-    left: -100px;
-    display: block;
-    margin-right: -100px;
-    margin-top: -1.3em;
-    transform: scale(2);
-    z-index: -1;
+.sei_only:not(#Sei2423 .sei_only) {
+  display: none;
 }
 </style>
 <script>
+let dispTimeOnTab = 0;
+function updateTitle(str) {
+  if(dispTimeOnTab) {
+    document.title = 'Tabatch ' + str;
+  } else {
+    if(document.title != 'Tabatch') {
+      document.title = 'Tabatch';
+    }
+  }
+}
 {
   let edition = 0;
   const body = document.body;
