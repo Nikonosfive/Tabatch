@@ -115,13 +115,17 @@
                   <label class="toggle-button">
                     <input type="checkbox" onclick="dispTimeOnTab ^= 1;updateTitle('');" style="cursor: pointer;">
                   </label>
+                  <a>RTA timer</a>
+                  <label class="toggle-button">
+                    <input type="checkbox" onclick="RTAmode ^= 1;$countdown.style.display = 'none';STW.time = Math.max(0, STW.time);" style="cursor: pointer;">
+                  </label>
                 </p>
               </p>
             </li>
             <li class="dropdown__item">
               <p class="a-contents">
               <p class="yohaku"><a>Functions</a>
-                <button onclick="window.open('https://nikonosfive.github.io/dev/watch/6_00_0.html', '_blank', 'location=no')" class="button-sousyoku">New Tab</button>
+                <button onclick="window.open('#', '_blank', 'location=no')" class="button-sousyoku">New Tab</button>
                 <button id="fullScreen" class="button-sousyoku">Full Screen</button>
                 <button id="exitFullScreen" class="button-sousyoku">Exit Full Screen</button>
                 <script>
@@ -582,7 +586,7 @@
       <div class="content_class">
         <div class="timer-contents">
           <center>
-            <span id="STWtime" class="timer-contents">00:00:00</span><span id="STWmtime" class="timer-contents-a">.000</span>
+            <span id="STWtime" class="timer-contents">00:00:00</span><span id="STWmtime" class="timer-contents-a">.000</span><div id="countdown"></div>
             <!--<span class="timer-contents-a">.000</span>-->
           </center>
         </div>
@@ -1377,10 +1381,10 @@ addEventListener('load', (function() {
   }
 
   $STWmtime.style.display = COOKIE.get('STWmtimestyledisplay') || 'inline-block';
-  document.getElementById('swapDigits').checked = $STWmtime.style.display != 'none';
+  $swapDigits.checked = $STWmtime.style.display != 'none';
 
   $STWLapDisp.style.display = COOKIE.get('STWLapDispstyledisplay') || 'inline-block';
-  document.getElementById('lapOff').checked = $STWLapDisp.style.display != 'inline-block';
+  $lapOff.checked = $STWLapDisp.style.display != 'inline-block';
 
   switch(COOKIE.get('font')){
     case 'BOLD':
@@ -1400,6 +1404,9 @@ const $WATTab = document.getElementById('WATTab');
 const $TIMTab = document.getElementById('TIMTab');
 
 const $setTabBtn = document.getElementById('setTabBtn');
+
+const $swapDigits = document.getElementById('swapDigits');
+const $lapOff = document.getElementById('lapOff');
 
 const ANHOUR = 3600000;
 const AMIN = 60000;
@@ -1479,7 +1486,7 @@ function allTabsKeyPress(key) {
 }
 
 function preventDefault(e, key) {
-  if(e.altKey || e.ctrlKey || e.shiftKey) return;
+
   switch(key) {
     case 'ArrowLeft':
     case 'ArrowRight':
@@ -1495,6 +1502,8 @@ function preventDefault(e, key) {
 addEventListener('keydown', e => {
   const key = e.key;
 
+  if(e.altKey || e.ctrlKey || e.shiftKey) return;
+
   preventDefault(e, key);
 
   setTabsKeyPress(key);
@@ -1509,7 +1518,7 @@ addEventListener('keydown', e => {
 
 const decimalPointDisplay = () => {
   let STWmtimedisp;
-  if ($STWmtime.style.display == 'none') {
+  if ($swapDigits.checked) {
     STWmtimedisp = 'inline-block';
   } else {
     STWmtimedisp = 'none';
@@ -1520,7 +1529,7 @@ const decimalPointDisplay = () => {
 
 const LapDisplay = () => {
   let STWLapDispdisp;
-  if ($STWLapDisp.style.display == 'none') {
+  if (!$lapOff.checked) {
     STWLapDispdisp = 'inline-block';
   } else {
     STWLapDispdisp = 'none';
@@ -1556,6 +1565,7 @@ $fontSettingBtns.forEach($fontBtn => $fontBtn.addEventListener('click', e => {
 }));
 
 function setTabsKeyPress(key) {
+  
   if(key == 'Escape') {
     $setTabBtn.classList.toggle('is-open');
     return;
@@ -1602,6 +1612,11 @@ function STWDisplay(force = false) {
   const msec = zeropad(STW.time % ASEC, 3);
   const time = `${hour}:${min}:${sec}`;
 
+  if(RTAmode) {  
+    RTAdisplay();
+    if(STW.time < 0) return;
+  }
+
   $STWmtime.innerHTML = `.${msec}`;
 
   if($STWtime.innerHTML == time) return;
@@ -1639,6 +1654,11 @@ function STWBtnsDisabled(when) {
 
 function STWStart() {
   STWBtnsDisabled('start');
+
+  if(RTAmode) {
+    if(STW.time != 0) return;
+    STW.time = -2999
+  };
 
   STW.moving = 1;
   STW.startTime = new Date() - STW.time;
@@ -1979,6 +1999,17 @@ body#Sei2423 {
 .sei_only:not(#Sei2423 .sei_only) {
   display: none;
 }
+#countdown {
+  text-align: center;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bgColor);
+  z-index: 6;
+}
 </style>
 <script>
 let dispTimeOnTab = 0;
@@ -1989,6 +2020,21 @@ function updateTitle(str) {
     if(document.title != 'Tabatch') {
       document.title = 'Tabatch';
     }
+  }
+}
+
+let RTAmode = 0;
+const $countdown = document.getElementById('countdown');
+function RTAdisplay() {
+  console.log(STW.time < 0);
+  if(STW.time < 0) {
+    const sec = 2 + ~(STW.time / ASEC);
+    if($countdown.innerHTML != sec) $countdown.innerHTML = sec;
+    if(STW.time < -2990) {
+      $countdown.style.display = 'block';
+    }
+  } else if (STW.time < 10) {
+    $countdown.style.display = 'none';
   }
 }
 {
