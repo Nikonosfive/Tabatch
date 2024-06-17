@@ -2026,7 +2026,6 @@ function updateTitle(str) {
 let RTAmode = 0;
 const $countdown = document.getElementById('countdown');
 function RTAdisplay() {
-  console.log(STW.time < 0);
   if(STW.time < 0) {
     const sec = 2 + ~(STW.time / ASEC);
     if($countdown.innerHTML != sec) $countdown.innerHTML = sec;
