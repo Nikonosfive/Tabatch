@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+<!--
+1px 1px 18px -8px var(--mainColor)
+-->
 <html lang="jp">
-
 <head>
   <title>Tabatch</title>
   <meta name=”viewport” content=”width=device-width,initial-scale=1″>
@@ -37,19 +39,7 @@
   <div class="takami">
     <div class="area">
       <div class="dropdown">
-        <script>
-          (function() {
-            document.addEventListener('DOMContentLoaded', function() {
-              const btn = document.getElementById('dropdown__btn');
-              if (btn) {
-                btn.addEventListener('click', function() {
-                  this.classList.toggle('is-open');
-                });
-              }
-            });
-          }());
-        </script>
-        <button class="dropdown__btn" id="dropdown__btn">
+        <button class="dropdown__btn" id="setTabBtn">
           <div class="3ten"><svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 600 600" style="width: 4vh; height: 4vh; ;" xml:space="preserve">
               <style type="text/css">
                 .st0 {
@@ -106,70 +96,63 @@
             </li>
             <li class="dropdown__item">
               <p class="a-contents">
-              <p class="yohaku"><a>Swap Digits</a>
-                <label class="toggle-button">
-                  <input type="checkbox" onclick="decimalPointDisplay()" style="cursor: pointer;">
-                </label>
-                <a>Lap OFF</a>
-                <label class="toggle-button">
-                  <input type="checkbox" onclick="LapDisplay()">
-                </label>
+                <p class="yohaku">
+                  <a>Swap Digits</a>
+                  <label class="toggle-button">
+                    <input type="checkbox" onclick="decimalPointDisplay()" id="swapDigits" style="cursor: pointer;">
+                  </label>
+                  <a>Lap OFF</a>
+                  <label class="toggle-button">
+                    <input type="checkbox" onclick="LapDisplay()" id="lapOff">
+                  </label>
+                </p>
               </p>
+            </li>
+            <li class="dropdown__item sei_only">
+              <p class="a-contents">
+                <p class="yohaku">
+                  <a>Time on Tab</a>
+                  <label class="toggle-button">
+                    <input type="checkbox" onclick="dispTimeOnTab ^= 1;updateTitle('');" style="cursor: pointer;">
+                  </label>
+                  <a>RTA timer</a>
+                  <label class="toggle-button">
+                    <input type="checkbox" onclick="RTAmode ^= 1;$countdown.style.display = 'none';STW.time = Math.max(0, STW.time);" style="cursor: pointer;">
+                  </label>
+                </p>
               </p>
             </li>
             <li class="dropdown__item">
               <p class="a-contents">
               <p class="yohaku"><a>Functions</a>
                 <button onclick="window.open('#', '_blank', 'location=no')" class="button-sousyoku">New Tab</button>
-                <button id="button1" class="button-sousyoku">Full Screen</button>
-                <button id="button2" class="button-sousyoku">Exit Full Screen</button>
+                <button id="fullScreen" class="button-sousyoku">Full Screen</button>
+                <button id="exitFullScreen" class="button-sousyoku">Exit Full Screen</button>
                 <script>
-                  window.onload = function() {
-                    changeColor('#000000', '#FFFFFF');
-
-                    function set_color(e) {
-                      document.body.style.setProperty('--' + e.target.id.slice(7), e.target.value);
-                    }
-                    [change_bgColor, change_mainColor].forEach(x => x.addEventListener('change', set_color));
-                  }
-                  window.addEventListener('load', function() {
-                    document.getElementById('button1').addEventListener('click', function() {
-                      document.body.requestFullscreen();
-                    });
-                    document.getElementById('button2').addEventListener('click', function() {
-                      document.exitFullscreen();
-                    });
-                  });
                 </script>
-              </p>
-              </p>
-            </li>
- <li class="dropdown__item">
-              <p class="a-contents">
-              <p class="yohaku"><a>Font Settings</a>
-                <input type="radio" name="radioName" id="cursive" style="display: none;"></input><label for="cursive" class="fontlabel">BOLD</label>
- <input type="radio" name="radioName" id="notosans" style="display: none;"></input><label for="notosans" class="fontlabel">Noto Sans</label>
-                  <input type="radio" name="radioName" id="serif" style="display: none;"></input><label for="serif" class="fontlabel">Serif</label>
-                
               </p>
               </p>
             </li>
             <li class="dropdown__item">
               <p class="a-contents">
-              <p class="yohaku">
-                <a class="inside" href="https://sites.google.com/view/tadr-tech/blog/htu">使い方 How to use</a>｜<a class="inside" href="https://sites.google.com/view/tadr-tech/blog">Release Notes</a>
-                <br>
-                <a class="inside">Tabatch by TADR, SEI2423</a>｜
-                <a class="inside">Ver.7の機能試験配信中です</a>｜
-                <a class="inside">Ver.6.30.0(2024.4.21)</a><br>
-                <a class="inside">音源：</a><a class="inside" href="https://amachamusic.chagasi.com">甘茶の音楽工房様</a>
-                 
-              </p>
+                <p class="yohaku" id="fontSetting"><a>Font Settings</a>
+                  <input type="radio" name="font" id="cursive" style="display: none;"></input><label for="cursive" class="fontlabel">BOLD</label>
+                  <input type="radio" name="font" id="notosans" style="display: none;"></input><label for="notosans" class="fontlabel">Noto Sans</label>
+                  <input type="radio" name="font" id="serif" style="display: none;"></input><label for="serif" class="fontlabel">Serif</label>
+                </p>
               </p>
             </li>
-            <li class="dropdown__item"></li>
-            <li class="dropdown__item"></li>
-            <li class="dropdown__item"></li>
+            <li class="dropdown__item">
+              <p class="a-contents">
+                <p class="yohaku">
+                  <a class="inside" href="https://www.tadr-tech.info/services/htu">使い方 How to use</a>｜<a class="inside" href="https://sites.google.com/view/tadr-tech/blog">Release Notes</a>
+                  <br>
+                  <a class="inside">Tabatch by T.A Design Room, SEI2423 (INPO)</a>｜
+                  <a class="inside">Ver.7.00.0(2024.6.17)</a><br>
+                  <a class="inside">音源：</a><a class="inside" href="https://amachamusic.chagasi.com">甘茶の音楽工房様</a>
+                </p>
+              </p>
+            </li>
           </ul>
         </div>
       </div>
@@ -602,7 +585,7 @@
       <div class="content_class">
         <div class="timer-contents">
           <center>
-            <span id="STWtime" class="timer-contents">00:00:00</span><span id="STWmtime" class="timer-contents-a">.000</span>
+            <span id="STWtime" class="timer-contents">00:00:00</span><span id="STWmtime" class="timer-contents-a">.000</span><div id="countdown"></div>
             <!--<span class="timer-contents-a">.000</span>-->
           </center>
         </div>
@@ -1339,15 +1322,96 @@
     </div>
   </div>
 <script>
+//------------------------------init------------------------------
+const COOKIE = new Map(document.cookie.split('; ').map(x => x.split('=')));
+COOKIE.set = () => {throw new TypeError("This variable was freezed.")};
+
+addEventListener('load', (function() {
+  const mainColor = COOKIE.get('mainColor') || '#000000';
+  const bgColor = COOKIE.get('bgColor') || '#FFFFFF';
+  changeColor(mainColor, bgColor);
+  console.log(COOKIE);
+
+  STW.startTime = +COOKIE.get('STWstartTime') || 0;
+  STW.time = +COOKIE.get('STWtime') || 0;
+  STW.moving = +COOKIE.get('STWmoving') || 0;
+
+  if(STW.moving){
+    STWBtnsDisabled('start');
+  } else {
+    if(STW.time) {
+      STWBtnsDisabled('stop');
+    } else {
+      STWBtnsDisabled('reset');
+    }
+  }
+
+  WAT.lang = COOKIE.get('lang') || 'ja';
+  
+  TIM.setTime = +COOKIE.get('TIMsetTime') || 30000;
+  TIM.endTime = +COOKIE.get('TIMendTime') || 0;
+  TIM.time = +COOKIE.get('TIMtime') || 30000;
+  TIM.moving = +COOKIE.get('TIMmoving') || 0;
+
+  $setTIMhours[0].value = $setTIMhours[1].value = TIM.setTime / ANHOUR | 0;
+  $setTIMmins[0].value = $setTIMmins[1].value = (TIM.setTime % ANHOUR) / AMIN | 0;
+  $setTIMsecs[0].value = $setTIMsecs[1].value = (TIM.setTime % AMIN) / ASEC | 0;
+
+  if(TIM.moving){
+    TIMBtnsDisabled('start');
+  } else {
+    if(TIM.time != TIM.setTime) {
+      TIMBtnsDisabled('stop');
+    } else {
+      TIMBtnsDisabled('reset');
+    }
+  }
+
+  STWDisplay(true);
+  TIMDisplay(true);
+
+  switch(COOKIE.get('Tab')) {
+    case 'STW':
+      $STWTab.checked = true;
+      break;
+    case 'TIM':
+      $TIMTab.checked = true;
+      break;
+  }
+
+  $STWmtime.style.display = COOKIE.get('STWmtimestyledisplay') || 'inline-block';
+  $swapDigits.checked = $STWmtime.style.display != 'none';
+
+  $STWLapDisp.style.display = COOKIE.get('STWLapDispstyledisplay') || 'inline-block';
+  $lapOff.checked = $STWLapDisp.style.display != 'inline-block';
+
+  switch(COOKIE.get('font')){
+    case 'BOLD':
+      $fontSettingBtns[0].checked = true;
+      break;
+    case 'Serif':
+      $fontSettingBtns[2].checked = true;
+      break;
+  }
+
+  setInterval(main);
+}));
 //------------------------------ALL------------------------------
 
 const $STWTab = document.getElementById('STWTab');
 const $WATTab = document.getElementById('WATTab');
 const $TIMTab = document.getElementById('TIMTab');
 
+const $setTabBtn = document.getElementById('setTabBtn');
+
+const $swapDigits = document.getElementById('swapDigits');
+const $lapOff = document.getElementById('lapOff');
+
 const ANHOUR = 3600000;
 const AMIN = 60000;
 const ASEC = 1000;
+
+const $fontSettingBtns = [...document.querySelectorAll('#fontSetting > input[name="font"]')];
 
 function zeropad(num, digits = 2, right = false) {
   const zeros = '0'.repeat(digits - 1);
@@ -1358,7 +1422,7 @@ function zeropad(num, digits = 2, right = false) {
   }
 }
 
-function display() {
+function display(force) {
   if($STWTab.checked) {
     STWDisplay();
   } else if($WATTab.checked) {
@@ -1371,75 +1435,154 @@ function display() {
 function changeColor(main, bg) {
   document.body.style.setProperty('--mainColor', main);
   document.body.style.setProperty('--bgColor', bg);
+  document.cookie = `mainColor=${main}`;
+  document.cookie = `bgColor=${bg}`;
 }
 
-function allTabsKeyPress(key) {
-  switch(key) {
-    case 'ArrowLeft':
-      if($WATTab.checked) {
-        $STWTab.checked = true;
-      } else if($STWTab.checked) {
-        $TIMTab.checked = true;
-        TIMDisplay();
-      } else if($TIMTab.checked) {
-        $WATTab.checked = true;
-      }
+function changeTab(nextTab) {
+  document.cookie = `Tab=${nextTab}`;
+
+  switch(nextTab) {
+    case 'STW':
+      $STWTab.checked = true;
+      updateTitle(STWtime.innerHTML);
       break;
-    case 'ArrowRight':
-      if($WATTab.checked) {
-        $TIMTab.checked = true;
-        TIMDisplay();
-      } else if($TIMTab.checked) {
-        $STWTab.checked = true;
-      } else if($STWTab.checked) {
-        $WATTab.checked = true;
-      }
+    case 'WAT':
+      $WATTab.checked = true;
       break;
-    case 'Escape':
-      const $AllSettingBtn = document.getElementById('dropdown__btn');
-      $AllSettingBtn.classList.toggle('is-open');
+    case 'TIM':
+      $TIMTab.checked = true;
+      updateTitle($TIMhour.parentNode.parentNode.innerText);
       break;
   }
 }
 
+function allTabsKeyPress(key) {
+  let nextTab = '';
+  switch(key) {
+    case 'ArrowLeft':
+      if($WATTab.checked) {
+        nextTab = 'STW';
+      } else if($STWTab.checked) {
+        nextTab = 'TIM';
+      } else if($TIMTab.checked) {
+        nextTab = 'WAT';
+      }
+      changeTab(nextTab);
+      break;
+    case 'ArrowRight':
+      if($WATTab.checked) {
+        nextTab = 'TIM';
+      } else if($TIMTab.checked) {
+        nextTab = 'STW';
+      } else if($STWTab.checked) {
+        nextTab = 'WAT';
+      }
+      changeTab(nextTab);
+      break;
+  }
+  
+}
+
 function preventDefault(e, key) {
+
   switch(key) {
     case 'ArrowLeft':
     case 'ArrowRight':
+    case 'ArrowUp':
+    case 'ArrowDown':
     case 'Escape':
     case ' ':
-      e.preventDefault()
+    case 'Tab':
+      e.preventDefault();
   }
 }
 
 addEventListener('keydown', e => {
   const key = e.key;
 
+  if(e.altKey || e.ctrlKey || e.shiftKey) return;
+
+  preventDefault(e, key);
+
+  setTabsKeyPress(key);
+
+  if($setTabBtn.classList.contains('is-open')) return;
+
   allTabsKeyPress(key);
   TIMTabKeyPress(key);
   WATTabKeyPress(key);
   STWTabKeyPress(key);
-
-  preventDefault(e, key);
 })
 
 const decimalPointDisplay = () => {
-  const ele = document.getElementById('STWmtime');
-  if (ele.style.display == 'none') {
-    ele.style.display = 'inline-block';
+  let STWmtimedisp;
+  if ($swapDigits.checked) {
+    STWmtimedisp = 'inline-block';
   } else {
-    ele.style.display = 'none';
+    STWmtimedisp = 'none';
   }
+  $STWmtime.style.display = STWmtimedisp;
+  document.cookie = `STWmtimestyledisplay=${STWmtimedisp}`;
 };
 
 const LapDisplay = () => {
-  const ele = document.getElementById('STWLapDisp');
-  if (ele.style.display == 'none') {
-    ele.style.display = 'inline-block';
+  let STWLapDispdisp;
+  if (!$lapOff.checked) {
+    STWLapDispdisp = 'inline-block';
   } else {
-    ele.style.display = 'none';
+    STWLapDispdisp = 'none';
   }
+  $STWLapDisp.style.display = STWLapDispdisp;
+  document.cookie = `STWLapDispstyledisplay=${STWLapDispdisp}`;
 };
+//---------------setting---------------
+
+$setTabBtn.addEventListener('click', () => {
+  $setTabBtn.classList.toggle('is-open');
+});
+
+settingPointer = 0;
+
+function set_color(e) {
+  const targetname = e.target.id.slice(7);
+  const targetcolor = e.target.value;
+  document.body.style.setProperty('--' + targetname, targetcolor);
+  document.cookie = `${targetname}=${targetcolor}`;
+}
+[change_bgColor, change_mainColor].forEach(x => x.addEventListener('change', set_color));
+
+document.getElementById('fullScreen').addEventListener('click', function() {
+  document.body.requestFullscreen();
+});
+document.getElementById('exitFullScreen').addEventListener('click', function() {
+  document.exitFullscreen();
+});
+
+$fontSettingBtns.forEach($fontBtn => $fontBtn.addEventListener('click', e => {
+  document.cookie = `font=${e.target.nextElementSibling.textContent}`;
+}));
+
+function setTabsKeyPress(key) {
+  
+  if(key == 'Escape') {
+    $setTabBtn.classList.toggle('is-open');
+    return;
+  }
+  if(!$setTabBtn.classList.contains('is-open')) return;
+
+  switch(key) {
+    case 'ArrowLeft':
+      break;
+    case 'ArrowRight':
+      break;
+    case 'ArrowUp':
+      break;
+    case 'ArrowDown':
+      break;
+  }
+}
+
 //------------------------------STW------------------------------
 
 const STW = {
@@ -1456,6 +1599,7 @@ function STWMove(now) {
   if(!STW.moving) return;
 
   STW.time = now - STW.startTime;
+  document.cookie = `STWtime=${STW.time}`;
 }
 
 function STWDisplay(force = false) {
@@ -1465,9 +1609,18 @@ function STWDisplay(force = false) {
   const min = zeropad((STW.time % ANHOUR) / AMIN | 0);
   const sec = zeropad((STW.time % AMIN) / ASEC | 0);
   const msec = zeropad(STW.time % ASEC, 3);
+  const time = `${hour}:${min}:${sec}`;
 
-  $STWtime.innerHTML = `${hour}:${min}:${sec}`;
+  if(RTAmode) {  
+    RTAdisplay();
+    if(STW.time < 0) return;
+  }
+
   $STWmtime.innerHTML = `.${msec}`;
+
+  if($STWtime.innerHTML == time) return;
+  $STWtime.innerHTML = time;
+  if($STWTab.checked) updateTitle($STWtime.innerHTML);
 }
 //---------------button---------------
 
@@ -1476,36 +1629,60 @@ const $STWStopBtn = document.getElementById('STWStopBtn');
 const $STWResetBtn = document.getElementById('STWResetBtn');
 const $STWLapBtn = document.getElementById('STWLapBtn');
 
+function STWBtnsDisabled(when) {
+  switch(when) {
+    case 'start':
+      $STWStartBtn.disabled = true;
+      $STWStopBtn.disabled = false;
+      $STWResetBtn.disabled = false;
+      $STWLapBtn.disabled = false;
+      break;
+    case 'stop':
+      $STWStartBtn.disabled = false;
+      $STWStopBtn.disabled = true;
+      $STWResetBtn.disabled = false;
+      $STWLapBtn.disabled = true;
+      break;
+    case 'reset':
+      $STWStartBtn.disabled = false;
+      $STWStopBtn.disabled = true;
+      $STWResetBtn.disabled = true;
+      $STWLapBtn.disabled = true;
+  }
+}
+
 function STWStart() {
-  $STWStartBtn.disabled = true;
-  $STWStopBtn.disabled = false;
-  $STWResetBtn.disabled = false;
-  $STWLapBtn.disabled = false;
+  STWBtnsDisabled('start');
+
+  if(RTAmode) {
+    if(STW.time != 0) return;
+    STW.time = -2999
+  };
 
   STW.moving = 1;
   STW.startTime = new Date() - STW.time;
+  document.cookie = 'STWmoving=1';
+  document.cookie = `STWstartTime=${STW.startTime}`;
 }
 
 function STWStop() {
-  $STWStartBtn.disabled = false;
-  $STWStopBtn.disabled = true;
-  $STWResetBtn.disabled = false;
-  $STWLapBtn.disabled = true;
+  STWBtnsDisabled('stop');
 
   STW.moving = 0;
+  document.cookie = 'STWmoving=0';
 }
 
 function STWReset() {
   if($STWResetBtn.disabled) return;
 
-  $STWStartBtn.disabled = false;
-  $STWStopBtn.disabled = true;
-  $STWResetBtn.disabled = true;
-  $STWLapBtn.disabled = true;
+  STWBtnsDisabled('reset');
 
   STW.startTime = 0;
   STW.time = 0;
   STW.moving = 0;
+  document.cookie = 'STWstartTime=0';
+  document.cookie = 'STWtime=0';
+  document.cookie = 'STWmoving=0';
   $STWLapDisp.innerHTML = '';
   STWDisplay(true);
 }
@@ -1581,6 +1758,8 @@ function WATDisplay() {
 
   if($WATtime.innerHTML != time) {
     $WATtime.innerHTML = time;
+
+    if($WATTab.checked) updateTitle(time);
   }
 
   if($WATday.innerHTML != day) {
@@ -1595,6 +1774,7 @@ function setWATLang() {
   } else {
     WAT.lang = 'ja';
   } 
+    document.cookie = `lang=${WAT.lang}`;
 }
 
 function WATTabKeyPress(key) {
@@ -1621,6 +1801,7 @@ const $TIMsec = document.getElementById('TIMsec');
 function TIMMove(now) {
   if(!TIM.moving) return;
   TIM.time = TIM.endTime - now;
+  document.cookie = `TIMtime=${TIM.time}`;
 
   if(TIM.time > 0) return;
   console.log('fin');
@@ -1631,10 +1812,6 @@ function TIMMove(now) {
 function TIMDisplay(force = false) {
   if(!TIM.moving && !force) return;
 
-  const ANHOUR = 3600000;
-  const AMIN = 60000;
-  const ASEC = 1000;
-
   const hour = zeropad(TIM.time / ANHOUR | 0);
   const min = zeropad((TIM.time % ANHOUR) / AMIN | 0);
   const sec = zeropad((TIM.time % AMIN) / ASEC | 0);
@@ -1642,11 +1819,13 @@ function TIMDisplay(force = false) {
   if($TIMsec.innerHTML == sec) return;
   $TIMsec.innerHTML = sec;
 
+  if($TIMTab.checked) updateTitle(`${hour}:${min}:${sec}`);
+
   if($TIMmin.innerHTML == min) return;
-  $TIMsec.innerHTML = min;
+  $TIMmin.innerHTML = min;
 
   if($TIMhour.innerHTML == hour) return;
-  $TIMsec.innerHTML = hour;
+  $TIMhour.innerHTML = hour;
 }
 //---------------button---------------
 
@@ -1655,35 +1834,54 @@ const $TIMStopBtn = document.getElementById('TIMStopBtn');
 const $TIMResetBtn = document.getElementById('TIMResetBtn');
 const $setTIMGroup = document.getElementById('setTIMGroup');
 
-function TIMStart() {
+function TIMBtnsDisabled(when) {
+  switch(when) {
+    case 'start':
+      $TIMStartBtn.disabled = true;
+      $TIMStopBtn.disabled = false;
+      $TIMResetBtn.disabled = false;
+      $setTIMGroup.style.visibility = 'hidden';
+      break;
+    case 'stop':
+      $TIMStartBtn.disabled = false;
+      $TIMStopBtn.disabled = true;
+      $TIMResetBtn.disabled = false;
+      $setTIMGroup.style.visibility = '';
+      break;
+    case 'reset':
+      $TIMStartBtn.disabled = false;
+      $TIMStopBtn.disabled = true;
+      $TIMResetBtn.disabled = true;
+      $setTIMGroup.style.visibility = '';
+  }
+}
 
-  $TIMStartBtn.disabled = true;
-  $TIMStopBtn.disabled = false;
-  $TIMResetBtn.disabled = false;
-  $setTIMGroup.style.visibility = 'hidden';
+
+function TIMStart() {
+  TIMBtnsDisabled('start');
 
   TIM.moving = 1;
   TIM.endTime = +new Date() + TIM.time;
+  document.cookie = 'TIMmoving=1';
+  document.cookie = `TIMendTime=${TIM.endTime}`;
 }
 
 function TIMStop() {
-  $TIMStartBtn.disabled = false;
-  $TIMStopBtn.disabled = true;
-  $TIMResetBtn.disabled = false;
-  $setTIMGroup.style.visibility = '';
+  TIMBtnsDisabled('stop');
 
   TIM.moving = 0;
+  document.cookie = 'TIMmoving=0';
 }
 
 function TIMReset() {
-  $TIMStartBtn.disabled = false;
-  $TIMStopBtn.disabled = true;
-  $TIMResetBtn.disabled = true;
-  $setTIMGroup.style.visibility = '';
+  TIMBtnsDisabled('reset');
 
   TIM.moving = 0;
   TIM.time = TIM.setTime;
   TIM.endTime = 0;
+  document.cookie = 'TIMmoving=0';
+  document.cookie = `TIMtime=${TIM.time}`;
+  document.cookie = 'TIMendTime=0';
   TIMDisplay(true);
 }
 
@@ -1714,8 +1912,7 @@ function setTIM() {
     = $setTIMhours[0].value * ANHOUR 
     + $setTIMmins[0].value * AMIN
     + $setTIMsecs[0].value * ASEC;
-
-  if(!$TIMTab.checked) return;
+  document.cookie = `TIMsetTime=${TIM.setTime}`;
 
   $TIMhour.innerHTML = zeropad($setTIMhours[0].value);
   $TIMmin.innerHTML = zeropad($setTIMmins[0].value);
@@ -1751,7 +1948,107 @@ function main() {
   display();
 }
 
-setInterval(main);
+</script>
+<style>
+* {
+  outline: none;
+  user-select: none;
+}
+.setting_pointer {
+    border-left: 3px solid var(--mainColor);
+    padding-left: 5px;
+    box-sizing: border-box;
+}
+
+body#Sei2423 {
+  --mainColor: #b25452 !important;
+  --bgColor: #d7bebe !important;
+}
+#Sei2423 .toggle-button::after {
+  background-color: var(--bgColor) !important;
+  border: solid 1px var(--mainColor) !important;
+  box-sizing: border-box;
+  box-shadow: none;
+}
+#Sei2423 .toggle-button {
+  background-color: var(--bgColor) !important;
+  border: solid 2px !important;
+}
+#Sei2423 .toggle-button:has(:checked) {
+  background-color: var(--mainColor) !important;
+  border: solid 2px !important;
+}
+#Sei2423 li.dropdown__item:is(:nth-child(2),:nth-child(3)) {
+  display: none;
+}
+#Sei2423 li.dropdown__item:is(:nth-child(6),:nth-child(7)) :is(button, label) {
+  background: linear-gradient(90deg, var(--mainColor) 49.5%, var(--bgColor) 49.5%) !important;
+  background-size: 205% 100% !important;
+  overflow: hidden !important;
+  background-position: 0% !important;
+  transition: all 0.7s ease !important;
+  border: var(--mainColor) 1px solid !important;
+  position: relative;
+}
+#Sei2423 li.dropdown__item:is(:nth-child(6),:nth-child(7)) :is(button, label):hover {
+  background-position: 99.4% !important;
+  color: var(--mainColor);
+  opacity: 100%;
+}
+.sei_only:not(#Sei2423 .sei_only) {
+  display: none;
+}
+#countdown {
+  text-align: center;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bgColor);
+  z-index: 6;
+}
+</style>
+<script>
+let dispTimeOnTab = 0;
+function updateTitle(str) {
+  if(dispTimeOnTab) {
+    document.title = 'Tabatch ' + str;
+  } else {
+    if(document.title != 'Tabatch') {
+      document.title = 'Tabatch';
+    }
+  }
+}
+
+let RTAmode = 0;
+const $countdown = document.getElementById('countdown');
+function RTAdisplay() {
+  if(STW.time < 0) {
+    const sec = 2 + ~(STW.time / ASEC);
+    if($countdown.innerHTML != sec) $countdown.innerHTML = sec;
+    if(STW.time < -2990) {
+      $countdown.style.display = 'block';
+    }
+  } else if (STW.time < 10) {
+    $countdown.style.display = 'none';
+  }
+}
+{
+  let edition = 0;
+  const body = document.body;
+  const seiEdition = function() {
+    switch(edition) {
+      case 0:
+        body.id = '';
+        break;
+      case 1:
+        body.id = 'Sei2423';
+    }
+  }
+  addEventListener('keydown', e=>{e.key=='S' && e.altKey && e.ctrlKey && e.shiftKey && seiEdition(edition = (edition + 1) % 2);});
+}
 </script>
 </body>
 </html>
