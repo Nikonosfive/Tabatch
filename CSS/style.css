@@ -321,7 +321,7 @@
       touch-action: manipulation;
       -webkit-text-size-adjust: none;
       text-size-adjust: none;
-      font-family: "Noto Sans";
+      font-family: "Noto Sans", sans-serif;
     }
 
     #buttons {
