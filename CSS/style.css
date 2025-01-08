@@ -47,6 +47,12 @@
     html:has(#serif:checked){
       font-family: "Zen Old Mincho", serif;
     }
+
+    html:has(#jersey:checked){
+      font-family: "Jersey 10 Charted", serif;
+    }
+
+
     
     .svg-settings {
       height: 20px;
@@ -355,7 +361,7 @@
       margin: 0.2rem;
       border-radius: 1.4rem;
       font-size: 0.8rem;
-       	font-family : inherit;
+      font-family: inherit;
       border-color: var(--bgColor);
       border: none;
       opacity: 80%;
