@@ -45,7 +45,7 @@
     }
 
     html:has(#serif:checked){
-      font-family: "serif";
+      font-family: "Zen Old Mincho", serif;
     }
     
     .svg-settings {
