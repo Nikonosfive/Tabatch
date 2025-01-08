@@ -32,11 +32,11 @@
       font-family: "Noto Sans", sans-serif;
     }
     
-    html:has(#Verdana:checked){
+    html:has(#verdana:checked){
       font-family: "Verdana";
     }
 
-    html:has(#google:checked){
+    html:has(#googlesans:checked){
       font-family: "Google Sans";
     }
 
