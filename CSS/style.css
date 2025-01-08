@@ -32,6 +32,18 @@
       font-family: "Noto Sans", sans-serif;
     }
     
+    html:has(#Verdana:checked){
+      font-family: "Verdana";
+    }
+
+    html:has(#google:checked){
+      font-family: "Google Sans";
+    }
+
+    html:has(#roboto:checked){
+      font-family: "Roboto";
+    }
+
     html:has(#serif:checked){
       font-family: "serif";
     }
