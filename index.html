@@ -163,6 +163,31 @@
             <li class="dropdown__item">
               <p class="a-contents">
                 <p class="yohaku">
+                  <form id="cssForm">
+                    <label>
+                      値:
+                    <input type="text" id="cssValue" placeholder="例: red">
+                    </label>
+                    <button type="button" id="applyButton">適用</button>
+                  </form>
+                  <script>
+                    document.getElementById("applyButton").addEventListener("click", function() {
+                      const property = "font-size";
+                      const value = document.getElementById("cssValue").value;
+                      const target = document.getElementById("WATtime");
+                      if (property && value) {
+                        WATtime.style[property] = value + "px";
+                      } else {
+                        alert("値を入力してください。");
+                      }
+                    });
+                  </script>
+                </p>
+              </p>
+            </li>
+            <li class="dropdown__item">
+              <p class="a-contents">
+                <p class="yohaku">
                   <a class="inside" href="https://www.tadr-tech.info/services/htu">使い方 How to use</a>｜<a class="inside" href="https://sites.google.com/view/tadr-tech/blog">Release Notes</a>
                   <br>
                   <a class="inside">Tabatch by T.A Design Room, SEI2423 (INPO)</a>｜
