@@ -166,7 +166,7 @@
                     <a>
                       Value
                     </a>
-                    <input type="text" id="cssValue" placeholder="例: red" class="button-sousyoku">
+                    <input type="text" id="cssValue" placeholder="number+vw" class="input-tag">
                     <button type="button" id="applyButton" class="button-sousyoku">Submit</button>
                   </form>
                   <script>
@@ -176,11 +176,14 @@
                       //const target = document.getElementById("WATtime");
                       if (property && value) {
                         WATtime.style[property] = value + "vw";
+                        STWtime.style[property] = value + "vw";
+                        TIMtime.style[property] = value + "vw";
                       } else {
                         alert("Input value, please.");
                       }
                     });
                   </script>
+                  <a>This is a temporary function.</a>
                 </p>
               </p>
             </li>
@@ -625,7 +628,7 @@
           <circle fill=var(--bgColor) cx="150.00" cy="164.93" r="6.97" />
         </svg><a class="suma">Stopwatch</a></label>
       <div class="content_class">
-        <div class="timer-contents">
+        <div class="timer-contents" id="TIMtime">
           <center>
             <span id="STWtime" class="timer-contents">00:00:00</span><span id="STWmtime" class="timer-contents-a">.000</span><div id="countdown"></div>
             <!--<span class="timer-contents-a">.000</span>-->
