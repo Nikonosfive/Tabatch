@@ -174,9 +174,9 @@
                     document.getElementById("applyButton").addEventListener("click", function() {
                       const property = "font-size";
                       const value = document.getElementById("cssValue").value;
-                      const target = document.getElementById("WATtime");
+                      const target = document.getElementByClass("timer-contents");
                       if (property && value) {
-                        WATtime.style[property] = value + "px";
+                        WATtime.style[property] = value + "vw";
                       } else {
                         alert("値を入力してください。");
                       }
