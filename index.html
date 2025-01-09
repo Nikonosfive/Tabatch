@@ -166,15 +166,15 @@
                   <form id="cssForm">
                     <label>
                       値:
-                    <input type="text" id="cssValue" placeholder="例: red">
+                    <input type="text" id="cssValue" placeholder="例: red" class="button-sousyoku">
                     </label>
-                    <button type="button" id="applyButton">適用</button>
+                    <button type="button" id="applyButton" class="button-sousyoku">適用</button>
                   </form>
                   <script>
                     document.getElementById("applyButton").addEventListener("click", function() {
                       const property = "font-size";
                       const value = document.getElementById("cssValue").value;
-                      const target = document.getElementByClass("timer-contents");
+                      const target = document.getElementsByClass("timer-contents");
                       if (property && value) {
                         WATtime.style[property] = value + "vw";
                       } else {
