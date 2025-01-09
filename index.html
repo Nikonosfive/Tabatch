@@ -162,13 +162,11 @@
             <li class="dropdown__item">
               <p class="a-contents">
                 <p class="yohaku">
-                  <form id="cssForm">
-                    <a>
                       Value
                     </a>
                     <input type="text" id="cssValue" placeholder="number+vw" class="input-tag">
+                    
                     <button type="button" id="applyButton" class="button-sousyoku">Submit</button>
-                  </form>
                   <script>
                     document.getElementById("applyButton").addEventListener("click", function() {
                       const property = "font-size";
@@ -628,7 +626,7 @@
           <circle fill=var(--bgColor) cx="150.00" cy="164.93" r="6.97" />
         </svg><a class="suma">Stopwatch</a></label>
       <div class="content_class">
-        <div class="timer-contents" id="TIMtime">
+        <div class="timer-contents">
           <center>
             <span id="STWtime" class="timer-contents">00:00:00</span><span id="STWmtime" class="timer-contents-a">.000</span><div id="countdown"></div>
             <!--<span class="timer-contents-a">.000</span>-->
@@ -1349,7 +1347,7 @@
   Z" />
         </svg> <a class="suma">Timer</a></label>
       <div class="content_class">
-        <div class="timer-contents">
+        <div class="timer-contents" id="TIMtime">
           <div id="largehour" class="time_display" style="display: inline-block; _display: inline;"><span id="TIMhour">00</span>
           </div>:<div id="largeminute" class="time_display" style="display: inline-block; _display: inline;"><span id="TIMmin">00</span>
           </div>:<div id="largesecond" class="time_display" style="display: inline-block; _display: inline;"><span id="TIMsec">30</span>
