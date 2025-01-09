@@ -395,20 +395,20 @@
 
     .button-select {
       color: var(--mainColor);
-      font-family : inherit;
+      font-family: inherit;
       font-weight: inherit;
       background-color: var(--bgColor);
       border-color: var(--mainColor);
-      padding: 0.6rem;
       border: 0.15rem solid;
       margin: 0.2rem;
-      border-radius: 2rem;
+      border-radius: 50%;
       font-size: 1.05rem;
       opacity: 100%;
       box-shadow: none;
       width: 4rem;
       height: 4rem;
       text-align: center;
+      vertical-align: middle;
     }
 
     .button-select:disabled {
