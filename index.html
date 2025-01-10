@@ -164,23 +164,19 @@
                 <p class="yohaku">
                       Font Size
                     </a>
-                    <input type="range" id="cssValue" min="00" max="99" step="1" value="16" class="ranges" />
-                    <button type="button" id="applyButton" class="button-sousyoku">Submit</button>
-                  <script>
-                    document.getElementById("applyButton").addEventListener("click", function() {
-                      const property = "font-size";
-                      const value = document.getElementById("cssValue").value;
-                      //const target = document.getElementById("WATtime");
-                      if (property && value) {
-                        WATtime.style[property] = value + "vw";
-                        STWtime.style[property] = value + "vw";
-                        TIMtime.style[property] = value + "vw";
-                        STWmtime.style[property] = (value / 2) + "vw";
-                      } else {
-                        alert("Input value, please.");
-                      }
-                    });
-                  </script>
+                     <input type="range" id="cssValue" min="0" max="99" step="1" value="16" class="ranges" />
+                      <script>
+                        document.getElementById("cssValue").addEventListener("input", function() {
+                          const property = "font-size";
+                          const value = this.value;
+                          if (property && value) {
+                             WATtime.style[property] = value + "vw";
+                             STWtime.style[property] = value + "vw";
+                             TIMtime.style[property] = value + "vw";
+                             STWmtime.style[property] = (value / 2) + "vw";
+                            }
+                              });
+                      </script>
                 </p>
               </p>
             </li>
