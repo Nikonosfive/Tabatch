@@ -448,6 +448,7 @@
       border-radius: 0.2rem;
       background-color: var(--mainColor);
       margin: 0.2rem;
+      cursor: pointer;
     }
 
     .ranges::-webkit-slider-thumb {
