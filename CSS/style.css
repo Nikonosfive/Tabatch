@@ -9,7 +9,8 @@
       font-family: inherit;
       border-color: var(--bgColor);
       border: none;
-      opacity: 80%;
+      opacity: 100%;
+      filter: saturate(70%);
       width: 2.5rem;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -234,6 +235,10 @@
       display: none;
     }
 
+    .toggle-button:hover{
+      scale: 1.02;
+    }
+
     .yohaku {
       margin: 1rem;
     }
@@ -364,7 +369,8 @@
       font-family: inherit;
       border-color: var(--bgColor);
       border: none;
-      opacity: 80%;
+      opacity: 100%;
+      filter: saturate(70%);
       cursor: pointer;
     }
 
@@ -460,6 +466,10 @@
       vertical-align: middle;
     }
 
+    .ranges::-webkit-slider-thumb:hover {
+      scale: 1.05;
+    }
+
     .a-contents {
       border-bottom: 1px solid;
       border-color: var(--mainColor);
@@ -502,7 +512,7 @@
       padding: 0.3rem;
       margin: 0.3rem;
       vertical-align: middle;
-      border: 1px solid;
+      border: 0.15rem solid;
       border-color: var(--mainColor);
       border-radius: 2rem;
       opacity: 100%;
