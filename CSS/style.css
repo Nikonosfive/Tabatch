@@ -119,6 +119,7 @@
       height: 42px;
       font-size: 2rem;
       opacity: 35%;
+      cursor: pointer;
     }
 
     /* 最大アスペクト比 */
