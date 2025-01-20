@@ -387,7 +387,7 @@
       padding: 0.3rem;
       margin: 0.1rem;
       border-radius: 2rem;
-      border: 1px var(--mainColor) solid;
+      border: 0.15rem var(--mainColor) solid;
       opacity: 80%;
       cursor: pointer;
       width: 3rem;
@@ -499,7 +499,7 @@
       background-color: var(--bgColor);
       border-radius: 1.5rem;
       height: 1rem;
-      border: 1px solid;
+      border: 0.15rem solid;
       padding: 0.3rem;
       margin: 0.15rem;
       text-align: center;
