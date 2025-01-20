@@ -432,6 +432,10 @@
       opacity: 35%;
     }
 
+    .button-select:disabled:hover {
+      opacity: 35%;
+    }
+
     .button-select:hover{
       opacity: 60%;
     }
