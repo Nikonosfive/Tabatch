@@ -48,7 +48,7 @@
 
 </head>
 
-<body class="tempo">
+<body class="tempo" id="tbtBody">
   <div class="takami">
     <div class="area">
       <div class="dropdown">
@@ -175,6 +175,24 @@
                              TIMtime.style[property] = value + "vw";
                              STWmtime.style[property] = (value / 2) + "vw";
                              WATday.style[property] =  (value / 4) + "vw";
+                            }
+                              });
+                      </script>
+                </p>
+              </p>
+            </li>
+            <li class="dropdown__item">
+              <p class="a-contents">
+                <p class="yohaku">
+                      Font Weight (TMP)
+                    </a>
+                      <input type="range" id="cssValueV" min="100" max="900" step="100" value="400" class="ranges" />
+                      <script>
+                        document.getElementById("cssValueV").addEventListener("input", function() {
+                          const property = "font-weight";
+                          const value = this.value;
+                          if (property && value) {
+                             tbtBody.style[property] = value;
                             }
                               });
                       </script>
