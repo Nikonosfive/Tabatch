@@ -302,6 +302,10 @@
       cursor: pointer;
     }
 
+    .WATday:hover{
+     opacity: 60%;
+    }
+
     .area>input:checked+label {
       font-weight: 900;
     }
@@ -419,6 +423,10 @@
 
     .button-select:disabled {
       opacity: 35%;
+    }
+
+    .button-select:hover{
+      opacity: 60%;
     }
 
     .tempo {
