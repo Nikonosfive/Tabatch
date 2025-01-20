@@ -377,6 +377,7 @@
       border-radius: 1.4rem;
       font-size: 0.8rem;
       font-family: inherit;
+      font-wight: inherit;
       border-color: var(--bgColor);
       border: none;
       opacity: 100%;
@@ -401,7 +402,7 @@
       opacity: 80%;
       cursor: pointer;
       width: 3rem;
-      font-family : inherit;
+      font-family: inherit;
       height: 2rem;
     }
 
