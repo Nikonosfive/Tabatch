@@ -98,6 +98,11 @@
       float: left;
       order: -1;
       z-index: 5;
+      cursor: pointer;
+    }
+
+    .3ten{
+      cursor: pointer;
     }
 
     .dropdown__btn {
@@ -419,6 +424,7 @@
       height: 4rem;
       text-align: center;
       vertical-align: middle;
+      cursor: pointer;
     }
 
     .button-select:disabled {
