@@ -35,32 +35,63 @@
     }
   </script>
   <script>
-    let startX = 0;
-    let endX = 0;
+    let startX = 0, startY = 0;
+    let endX = 0, endY = 0;
     const labels = ["STWTab", "WATTab", "TIMTab"];
+    const dropdownBtn = document.getElementById("setTabBtn");
 
     document.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
     });
 
     document.addEventListener("touchend", (e) => {
       endX = e.changedTouches[0].clientX;
+      endY = e.changedTouches[0].clientY;
       handleSwipe();
     });
 
     function handleSwipe() {
       const swipeThreshold = 50;
-      const direction = endX - startX;
+      const horizontalDiff = endX - startX;
+      const verticalDiff = endY - startY;
+
+      if (Math.abs(verticalDiff) > Math.abs(horizontalDiff)) {
+        // 上下のフリック
+        if (Math.abs(verticalDiff) > swipeThreshold) {
+          if (verticalDiff > 0) {
+            // 下から上へのフリック
+            if (dropdownBtn.classList.contains("is-open")) {
+              dropdownBtn.className = "dropdown__btn";
+            }
+          } else {
+            // 上から下へのフリック
+            if (!dropdownBtn.classList.contains("is-open")) {
+              dropdownBtn.className = "dropdown__btn is-open";
+            }
+          }
+        }
+      } else if (!dropdownBtn.classList.contains("is-open")) {
+        // 左右のフリック（dropdown__btnがis-openでない場合のみ処理）
+        if (Math.abs(horizontalDiff) > swipeThreshold) {
+          const direction = horizontalDiff > 0 ? "right" : "left";
+          handleHorizontalSwipe(direction);
+        }
+      }
+    }
+
+    function handleHorizontalSwipe(direction) {
       const currentTab = labels.findIndex(id => document.getElementById(id).checked);
 
-      if (Math.abs(direction) > swipeThreshold) {
-        if (direction > 0 && currentTab > 0) {
-          // 左から右へのフリック
-          document.getElementById(labels[currentTab - 1]).checked = true;
-        } else if (direction < 0 && currentTab < labels.length - 1) {
-          // 右から左へのフリック
-          document.getElementById(labels[currentTab + 1]).checked = true;
-        }
+      if (direction === "right" && currentTab > 0) {
+        // 左から右へのフリック
+        document.getElementById(labels[currentTab - 1]).checked = true;
+      } else if (direction === "left" && currentTab < labels.length - 1) {
+        // 右から左へのフリック
+        document.getElementById(labels[currentTab + 1]).checked = true;
+      } else if (currentTab === -1) {
+        // どのタブも選択されていない場合、最初のラベルを選択
+        document.getElementById(labels[0]).checked = true;
       }
     }
   </script>
