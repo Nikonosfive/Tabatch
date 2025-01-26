@@ -34,6 +34,50 @@
         });
     }
   </script>
+   <script>
+    const content = document.getElementById('content');
+
+    let startX = 0;
+    let startY = 0;
+
+    // タッチ開始時の座標を記録
+    content.addEventListener('touchstart', (e) => {
+      const touch = e.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+    });
+
+    // タッチ終了時に方向を判定
+    content.addEventListener('touchend', (e) => {
+      const touch = e.changedTouches[0];
+      const endX = touch.clientX;
+      const endY = touch.clientY;
+
+      const diffX = endX - startX;
+      const diffY = endY - startY;
+
+      // 横方向の移動が縦方向より大きい場合のみフリック判定
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+          // 右フリックの場合
+          console.log('右フリックを検出');
+          simulateRightArrowKey();
+        }
+      }
+    });
+
+    // 右矢印キーの押下をシミュレートする関数
+    function simulateRightArrowKey() {
+      const event = new KeyboardEvent('keydown', {
+        key: 'ArrowRight',
+        code: 'ArrowRight',
+        keyCode: 39,
+        bubbles: true,
+        cancelable: true,
+      });
+      document.dispatchEvent(event);
+    }
+  </script>
  
 </head>
 
