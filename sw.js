@@ -4,11 +4,11 @@ const RESOURCES_TO_CACHE = [
   "/index.html",
   "/manifest.json",
   "/CSS/style.css",
-  "/audio/sekibaku.mp3"
-  "/icons/b_gr.svg"
-  "/icons/b_w.svg"
-  "/icons/bl_g.svg"
-  "/icons/w_b.svg"
+  "/audio/sekibaku.mp3",
+  "/icons/b_gr.svg",
+  "/icons/b_w.svg",
+  "/icons/bl_g.svg",
+  "/icons/w_b.svg",
 ];
 
 const addResourcesToCache = async (resources) => {
