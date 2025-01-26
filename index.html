@@ -34,48 +34,50 @@
         });
     }
   </script>
-   <script>
-    const content = document.getElementById('content');
+  <script>
+    let currentIndex = 1; // デフォルトで「label2」を選択
+    const labels = document.querySelectorAll(".tab_class");
 
     let startX = 0;
-    let startY = 0;
+    let endX = 0;
 
-    // タッチ開始時の座標を記録
-    content.addEventListener('touchstart', (e) => {
-      const touch = e.touches[0];
-      startX = touch.clientX;
-      startY = touch.clientY;
+    // 初期状態でデフォルトを選択
+    function updateSelection() {
+      labels.forEach((label, index) => {
+        if (index === currentIndex) {
+          label.classList.add("selected");
+        } else {
+          label.classList.remove("selected");
+        }
+      });
+    }
+
+    document.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX; // タッチ開始位置を記録
     });
 
-    // タッチ終了時に方向を判定
-    content.addEventListener('touchend', (e) => {
-      const touch = e.changedTouches[0];
-      const endX = touch.clientX;
-      const endY = touch.clientY;
+    document.addEventListener("touchend", (e) => {
+      endX = e.changedTouches[0].clientX; // タッチ終了位置を記録
+      handleSwipe();
+    });
 
-      const diffX = endX - startX;
-      const diffY = endY - startY;
+    function handleSwipe() {
+      const swipeThreshold = 50; // フリックと判定する移動距離の閾値
+      const distance = startX - endX;
 
-      // 横方向の移動が縦方向より大きい場合のみフリック判定
-      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-        if (diffX > 0) {
-          // 右フリックの場合
-          console.log('右フリックを検出');
-          simulateRightArrowKey();
+      if (distance > swipeThreshold) {
+        // 左方向にフリックした場合
+        if (currentIndex < labels.length - 1) {
+          currentIndex++;
+          updateSelection();
+        }
+      } else if (distance < -swipeThreshold) {
+        // 右方向にフリックした場合
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateSelection();
         }
       }
-    });
-
-    // 右矢印キーの押下をシミュレートする関数
-    function simulateRightArrowKey() {
-      const event = new KeyboardEvent('keydown', {
-        key: 'ArrowRight',
-        code: 'ArrowRight',
-        keyCode: 39,
-        bubbles: true,
-        cancelable: true,
-      });
-      document.dispatchEvent(event);
     }
   </script>
  
