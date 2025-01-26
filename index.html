@@ -35,47 +35,31 @@
     }
   </script>
   <script>
-    let currentIndex = 1; // デフォルトで「label2」を選択
-    const labels = document.querySelectorAll(".tab_class");
-
     let startX = 0;
     let endX = 0;
-
-    // 初期状態でデフォルトを選択
-    function updateSelection() {
-      labels.forEach((label, index) => {
-        if (index === currentIndex) {
-          label.classList.add("selected");
-        } else {
-          label.classList.remove("selected");
-        }
-      });
-    }
+    const labels = ["STWTab", "WATTab", "TIMTab"];
 
     document.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX; // タッチ開始位置を記録
+      startX = e.touches[0].clientX;
     });
 
     document.addEventListener("touchend", (e) => {
-      endX = e.changedTouches[0].clientX; // タッチ終了位置を記録
+      endX = e.changedTouches[0].clientX;
       handleSwipe();
     });
 
     function handleSwipe() {
-      const swipeThreshold = 50; // フリックと判定する移動距離の閾値
-      const distance = startX - endX;
+      const swipeThreshold = 50;
+      const direction = endX - startX;
+      const currentTab = labels.findIndex(id => document.getElementById(id).checked);
 
-      if (distance > swipeThreshold) {
-        // 左方向にフリックした場合
-        if (currentIndex < labels.length - 1) {
-          currentIndex++;
-          updateSelection();
-        }
-      } else if (distance < -swipeThreshold) {
-        // 右方向にフリックした場合
-        if (currentIndex > 0) {
-          currentIndex--;
-          updateSelection();
+      if (Math.abs(direction) > swipeThreshold) {
+        if (direction > 0 && currentTab > 0) {
+          // 左から右へのフリック
+          document.getElementById(labels[currentTab - 1]).checked = true;
+        } else if (direction < 0 && currentTab < labels.length - 1) {
+          // 右から左へのフリック
+          document.getElementById(labels[currentTab + 1]).checked = true;
         }
       }
     }
