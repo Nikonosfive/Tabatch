@@ -71,7 +71,7 @@
     <div class="area">
       <div class="dropdown">
         <button class="dropdown__btn" id="setTabBtn">
-          <div class="3ten"><svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 600 600" style="width: 1.3rem; height: 1.3rem; ;" xml:space="preserve">
+          <div class="ten"><svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 600 600" style="width: 1.3rem; height: 1.3rem; ;" xml:space="preserve">
               <style type="text/css">
                 .st0 {
                   fill: var(--mainColor);
@@ -87,9 +87,8 @@
         <div class="dropdown__body">
           <ul class="dropdown__list">
             <li class="dropdown__item">
-              <p class="a-contents" style="border: none;">
+              <div class="a-contents">
               <p class="yohaku"><a>Timer Settings</a></p>
-              </p>
               <div class="bargroup" id="setTIMGroup">
                 <div class="time" id="setTIMhour">
                   <input type="number" min="00" max="99" step="1" value="0" class="input-tag">
@@ -106,27 +105,29 @@
                   <a class="touhaba">Sec</a>
                   <input type="range" min="00" max="59" step="1" value="30" class="ranges" />
                 </div>
+              </div>
+              </div>
             </li>
             <li class="dropdown__item">
-              <p class="a-contents">
+              <div class="a-contents">
               <p class="yohaku"><a>Custom Color Settings</a>
                 <input type="color" id="change_bgColor" class="button-sousyoku-pa">
                 <input type="color" id="change_mainColor" class="button-sousyoku-pa">
               </p>
-              </p>
+            </div>
             </li>
             <li class="dropdown__item">
-              <p class="a-contents">
+              <div class="a-contents">
               <p class="yohaku"><a>Color Settings</a>
                 <input type="image" src="icons/w_b.svg" class="svg-icon" value="LightMode" onClick="changeColor('#000000', '#FFFFFF')">
                 <input type="image" src="icons/b_w.svg" class="svg-icon" value="DarkMode" onClick="changeColor('#FFFFFF', '#000000')">
                 <input type="image" src="icons/bl_g.svg" class="svg-icon" value="BIOS Mode" onClick="changeColor('#cacaca','#0000ff')">
                 <input type="image" src="icons/b_gr.svg" class="svg-icon" value="PRO Mode" onClick="changeColor('#00FF00', '#000000')">
               </p>
-              </p>
+            </div>
             </li>
             <li class="dropdown__item">
-              <p class="a-contents">
+              <div class="a-contents">
                 <p class="yohaku">
                   <a>Swap Digits</a>
                   <label class="toggle-button">
@@ -137,10 +138,10 @@
                     <input type="checkbox" onclick="LapDisplay()" id="lapOff">
                   </label>
                 </p>
-              </p>
+              </div>
             </li>
             <li class="dropdown__item sei_only">
-              <p class="a-contents">
+              <div class="a-contents">
                 <p class="yohaku">
                   <a>Time on Tab</a>
                   <label class="toggle-button">
@@ -151,10 +152,10 @@
                     <input type="checkbox" onclick="RTAmode ^= 1;$countdown.style.display = 'none';STW.time = Math.max(0, STW.time);" style="cursor: pointer;">
                   </label>
                 </p>
-              </p>
+              </div>
             </li>
             <li class="dropdown__item">
-              <p class="a-contents">
+              <div class="a-contents">
               <p class="yohaku"><a>Functions</a>
                 <button onclick="window.open('#', '_blank', 'location=no')" class="button-sousyoku">New Tab</button>
                 <button id="fullScreen" class="button-sousyoku">⛶ FSP</button>
@@ -162,11 +163,14 @@
                 <script>
                 </script>
               </p>
-              </p>
+            </div>
             </li>
             <li class="dropdown__item">
-              <p class="a-contents">
-                <p class="yohaku" id="fontSetting"><a>Font Settings</a>
+              <div class="a-contents">
+                <div class="yohaku" id="fontSetting"><a>Font Settings</a>
+                </div>
+                <div class="yohaku">
+                <div class="scroll">
                   <!-- <input type="radio" name="font" id="cursive" style="display: none;"></input><label for="cursive" class="fontlabel">BOLD</label> -->
                   <input type="radio" name="font" id="notosans" style="display: none;"></input><label for="notosans" class="fontlabel">Noto Sans</label>
                   <input type="radio" name="font" id="serif" style="display: none;"></input><label for="serif" class="fontlabel">Serif</label>
@@ -174,36 +178,17 @@
                   <!-- <input type="radio" name="font" id="googlesans" style="display: none;"></input><label for="googlesans" class="fontlabel">Google Sans</label> -->
                   <input type="radio" name="font" id="roboto" style="display: none;"></input><label for="roboto" class="fontlabel">Roboto</label>
                   <input type="radio" name="font" id="jersey" style="display: none;"></input><label for="jersey" class="fontlabel">Jersey 10 Charted</label>
-                </p>
-              </p>
+                </div>
+                </div>
+              </div>
             </li>
             <li class="dropdown__item">
-              <p class="a-contents">
-                <p class="yohaku">
-                      Font Size
-                    </a>
-                      <input type="range" id="cssValue" min="0" max="32" step="1" value="16" class="ranges" />
-                      <script>
-                        document.getElementById("cssValue").addEventListener("input", function() {
-                          const property = "font-size";
-                          const value = this.value;
-                          if (property && value) {
-                             WATtime.style[property] = value + "vw";
-                             STWtime.style[property] = value + "vw";
-                             TIMtime.style[property] = value + "vw";
-                             STWmtime.style[property] = (value / 2) + "vw";
-                             WATday.style[property] =  (value / 4) + "vw";
-                            }
-                              });
-                      </script>
-                </p>
-              </p>
-            </li>
-            <li class="dropdown__item">
-              <p class="a-contents">
-                <p class="yohaku">
-                      Font Weight
-                    </a>
+              <div class="a-contents">
+                <div class="yohaku">
+                  <details>
+                    <summary class="summary-contents"><a>Advanced Font Settings</summary>
+                    <p class="yohaku">
+                     <a>Font Weight</a>
                       <input type="range" id="cssValueV" min="100" max="900" step="100" value="400" class="ranges" />
                       <script>
                         document.getElementById("cssValueV").addEventListener("input", function() {
@@ -214,19 +199,39 @@
                             }
                               });
                       </script>
-                </p>
+                   </p>
+                   <p class="yohaku">
+                    Font Size
+                  </a>
+                    <input type="range" id="cssValue" min="0" max="32" step="1" value="16" class="ranges" />
+                    <script>
+                      document.getElementById("cssValue").addEventListener("input", function() {
+                        const property = "font-size";
+                        const value = this.value;
+                        if (property && value) {
+                           WATtime.style[property] = value + "vw";
+                           STWtime.style[property] = value + "vw";
+                           TIMtime.style[property] = value + "vw";
+                           STWmtime.style[property] = (value / 2) + "vw";
+                           WATday.style[property] =  (value / 2) + "vw";
+                          }
+                            });
+                    </script>
               </p>
+                  </details>
+                </div>
+              </div>
             </li>
-            <li class="dropdown__item">
-              <p class="a-contents">
-                <p class="yohaku">
-                  <a class="inside" href="https://www.tadr-tech.info/kikaku/htu" target="_blank">使い方 How to use</a>｜<a class="inside" href="https://www.tadr-tech.info/blog" target="_blank">Release Notes</a>
-                  <br>
-                  <a class="inside">Tabatch by T.A Design Room, SEI2423 (INPO)</a>｜
-                  <a class="inside">Ver.7.40.0(2025.1.25)</a><br>
-                  <a class="inside">音源：</a><a class="inside" href="https://amachamusic.chagasi.com" target="_blank">甘茶の音楽工房様</a>
-                </p>
-              </p>
+            <li class="dropdown__item_noborder">
+              <div class="a-contents">
+                  <div class="yohaku">
+                    <details>
+                      <summary class="summary-contents"><a>Information｜</a><a class="inside">Ver.7.40.1(2025.2.26)</a></summary>
+                      <a class="inside" id="forurl" href="https://www.tadr-tech.info/kikaku/htu" target="_blank">使い方 How to use</a>｜<a class="inside" id="forurl" href="https://www.tadr-tech.info/blog" target="_blank">Release Notes</a>
+                      ｜<a class="inside">Tabatch by TADR, SEI2423 (INPO)</a>｜<a class="inside">Music by </a><a class="inside" id="forurl" href="https://amachamusic.chagasi.com" target="_blank">甘茶の音楽工房様</a>
+                    </details>
+                  </div>
+              </div>
             </li>
           </ul>
         </div>
