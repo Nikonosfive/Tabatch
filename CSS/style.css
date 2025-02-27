@@ -20,8 +20,7 @@
 
     details[open] {
     	padding: 0;
-	    background-color: #ffffff;
-	  }
+	   }
 
     details[open] summary {
  	    border-bottom: 0px solid #aaa;
@@ -104,8 +103,46 @@
       font-family: "Jersey 10 Charted", serif;
     }
 
+    html:has(#italic:checked){
+      font-style: italic;
+    }
 
+    html:has(#gray:checked){
+      filter: grayscale(100%);
+    }
+
+    html:has(#revc:checked){
+      filter: invert(100%);
+    }
     
+    html:has(#contrast:checked){
+      filter: contrast(250%);
+    }
+
+    html:has(#rotate:checked){
+      filter: hue-rotate(90deg);
+    }
+
+    html:has(#sepia:checked){
+      filter: sepia(60%);
+    }
+
+    html:has(#saturate:checked){
+      filter: saturate(30%);
+    }
+
+    html:has(#blur:checked){
+      filter: blur(5px);
+    }
+
+    html:has(#shadow:checked){
+      filter: drop-shadow(3px 3px 1px #999);
+    }
+
+    html:has(#bright:checked){
+      filter: brightness(1.7);
+    }
+
     .svg-settings {
       height: 20px;
       z-index: 100;
