@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabatch beta Ana</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+        }
+        .clock {
+            width: 80vmin;
+            height: 80vmin;
+            border: 5px solid black;
+            border-radius: 50%;
+            position: relative;
+            background-color: black;
+            color: lightgreen;
+        }
+        .number {
+            position: absolute;
+            font-size: 5vmin;
+            font-weight: bold;
+            transform: translate(-50%, -50%);
+        }
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            background-color: lightgreen;
+        }
+        .hour {
+            width: 1.5vmin;
+            height: 20vmin;
+            border-radius: 0.75vmin;
+        }
+        .minute {
+            width: 1vmin;
+            height: 25vmin;
+            border-radius: 0.5vmin;
+        }
+        .second {
+            width: 0.5vmin;
+            height: 27vmin;
+            border-radius: 0.25vmin;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock" id="clock"></div>
+    <script>
+        const clock = document.getElementById("clock");
+        const numbers = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+        
+        numbers.forEach((num, i) => {
+            const angle = (i * 30) * (Math.PI / 180);
+            const x = 40 + Math.sin(angle) * 32;
+            const y = 40 - Math.cos(angle) * 32;
+            const div = document.createElement("div");
+            div.className = "number";
+            div.style.left = `${x}vmin`;
+            div.style.top = `${y}vmin`;
+            div.style.fontSize = `5vmin`;
+            div.textContent = num;
+            clock.appendChild(div);
+        });
+        
+        function createHand(className) {
+            const hand = document.createElement("div");
+            hand.className = `hand ${className}`;
+            clock.appendChild(hand);
+            return hand;
+        }
+        
+        const hourHand = createHand("hour");
+        const minuteHand = createHand("minute");
+        const secondHand = createHand("second");
+        
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            
+            const hourDeg = (hours + minutes / 60) * 30;
+            const minuteDeg = (minutes + seconds / 60) * 6;
+            const secondDeg = seconds * 6;
+            
+            hourHand.style.transform = `translate(-50%, 0) rotate(${hourDeg}deg)`;
+            minuteHand.style.transform = `translate(-50%, 0) rotate(${minuteDeg}deg)`;
+            secondHand.style.transform = `translate(-50%, 0) rotate(${secondDeg}deg)`;
+        }
+        
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
