@@ -2,6 +2,7 @@ const CACHE_NAME = "v1";
 const RESOURCES_TO_CACHE = [
   "/",
   "/index.html",
+  "/release.html",
   "/manifest.json",
   "/CSS/style.css",
   "/audio/sekibaku.mp3",
