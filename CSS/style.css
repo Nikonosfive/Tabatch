@@ -220,7 +220,7 @@
     }
 
     /* 最大アスペクト比 */
-    @media (max-aspect-ratio: 0.8) {
+    @media (max-aspect-ratio: 0.67) {
       html {
         font-size: 4vw;
       }
