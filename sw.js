@@ -22,12 +22,10 @@ const addResourcesToCache = async (resources) => {
   }
 };
 
-// Installイベント: リソースをキャッシュする
 self.addEventListener("install", (event) => {
   event.waitUntil(addResourcesToCache(RESOURCES_TO_CACHE));
 });
 
-// Activateイベント: 古いキャッシュを削除する
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -40,7 +38,6 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Fetchイベント: キャッシュからリソースを提供する
 self.addEventListener("fetch", (event) => {
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
