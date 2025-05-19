@@ -5,7 +5,7 @@
   <title>Tabatch</title>
   <meta name=”viewport” content=”width=device-width,initial-scale=1″>
   <meta name="description" content="Tabatch / タバッチ！｜軽量・多機能な時間管理ツール。">
-  <meta name="keywords" content="Tabatch, Watch, T.A Design Room, TADR, Online Watch, 時計">
+  <meta name="keywords" content="Tabatch, Watch, watch browser, T.A Design Room, TADR, Online Watch, 時計">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" type="text/css" href="CSS/style.css" />
   <link rel="icon" href="img/logo.svg" />
@@ -71,7 +71,7 @@
   <div class="takami">
     <div class="area">
       <button class="dropdown__btn" id="setTabBtn">
-        <div class="ten" title="ドロップダウンメニューを開く"><svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 600 600" style="width: 1.3rem; height: 1.3rem; ;" xml:space="preserve">
+        <div class="ten" title="ドロップダウンメニューを開く"><svg version="1.1" id="_x32_" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 600 600" style="width: 1.3rem; height: 3rem; ;" xml:space="preserve">
             <style type="text/css">
               .st0 {
                 fill: var(--mainColor);
@@ -87,57 +87,152 @@
       <div class="dropdown__body">
         <ul class="dropdown__list">
           <li class="dropdown__item">
-            <div class="a-contents">
-              <p class="yohaku"><a>Timer Settings</a></p>
-              <div class="bargroup" id="setTIMGroup">
-                <div class="time" id="setTIMhour">
-                  <input type="number" min="00" max="99" step="1" value="0" class="input-tag">
-                  <a class="touhaba">Hou</a>
-                  <input type="range" min="00" max="99" step="1" value="0" class="ranges" />
+            <div class="a-contents" id="setTIMGroup">
+              <p class="midashi"><a>Timer Settings</a></p>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Hour</a>
+                  </p>
                 </div>
-                <div class="time" id="setTIMmin">
-                  <input type="number" min="00" max="59" step="1" value="0" class="input-tag">
-                  <a class="touhaba">Min</a>
-                  <input type="range" min="00" max="59" step="1" value="0" class="ranges" />
+                <div class="right">
+                  <p class="yohaku" id="setTIMhour">
+                    <input type="range" min="00" max="99" step="1" value="0" class="ranges" />
+                    <input type="number" min="00" max="99" step="1" value="0" class="input-tag">
+                  </p>
                 </div>
-                <div class="time" id="setTIMsec">
-                  <input type="number" min="00" max="59" step="1" value="30" class="input-tag">
-                  <a class="touhaba">Sec</a>
-                  <input type="range" min="00" max="59" step="1" value="30" class="ranges" />
+              </div>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Minute</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku" id="setTIMmin">
+                    <input type="range" min="00" max="59" step="1" value="0" class="ranges" />
+                    <input type="number" min="00" max="59" step="1" value="0" class="input-tag">
+                  </p>
+                </div>
+              </div>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Second</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku" id="setTIMsec">
+                    <input type="range" min="00" max="59" step="1" value="30" class="ranges" />
+                    <input type="number" min="00" max="59" step="1" value="30" class="input-tag">
+                  </p>
                 </div>
               </div>
             </div>
           </li>
           <li class="dropdown__item">
             <div class="a-contents">
-              <p class="yohaku"><a>Custom Color Settings</a>
-                <input type="color" id="change_bgColor" class="button-sousyoku-pa" title="背景色を選択する">
-                <input type="color" id="change_mainColor" class="button-sousyoku-pa" title="文字色を選択する">
-              </p>
+              <p class="midashi"><a>Color Settings</a></p>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Presets</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku">
+                    <input type="image" src="icons/w_b.svg" class="svg-icon" value="LightMode" onClick="changeColor('#000000', '#FFFFFF')" title="背景：白 / 文字：黒">
+                    <input type="image" src="icons/b_w.svg" class="svg-icon" value="DarkMode" onClick="changeColor('#FFFFFF', '#000000')" title="背景：黒 / 文字：白">
+                    <input type="image" src="icons/bl_g.svg" class="svg-icon" value="BIOS Mode" onClick="changeColor('#cacaca','#0000ff')" title="背景：青 / 文字：灰">
+                    <input type="image" src="icons/b_gr.svg" class="svg-icon" value="PRO Mode" onClick="changeColor('#00FF00', '#000000')" title="背景：黒 / 文字：黄緑">
+                  </p>
+                </div>
+              </div>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Custom</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku">
+                    <input type="color" id="change_bgColor" class="button-sousyoku-pa" title="背景色を選択する">
+                    <input type="color" id="change_mainColor" class="button-sousyoku-pa" title="文字色を選択する">
+                  </p>
+                </div>
+              </div>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Reverse Color</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku">
+                    <label class="toggle-button" title="色反転">
+                      <input type="checkbox" id="revc" name="revc" style="cursor: pointer;" /></label>
+                  </p>
+                </div>
+              </div>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Grayscale</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku">
+                    <label class="toggle-button" title="グレースケール">
+                      <input type="checkbox" id="gray" name="gray" style="cursor: pointer;" /><label>
+                  </p>
+                </div>
+              </div>
             </div>
           </li>
           <li class="dropdown__item">
             <div class="a-contents">
-              <p class="yohaku"><a>Color Settings</a>
-                <input type="image" src="icons/w_b.svg" class="svg-icon" value="LightMode" onClick="changeColor('#000000', '#FFFFFF')" title="背景：白 / 文字：黒">
-                <input type="image" src="icons/b_w.svg" class="svg-icon" value="DarkMode" onClick="changeColor('#FFFFFF', '#000000')" title="背景：黒 / 文字：白">
-                <input type="image" src="icons/bl_g.svg" class="svg-icon" value="BIOS Mode" onClick="changeColor('#cacaca','#0000ff')" title="背景：青 / 文字：灰">
-                <input type="image" src="icons/b_gr.svg" class="svg-icon" value="PRO Mode" onClick="changeColor('#00FF00', '#000000')" title="背景：黒 / 文字：黄緑">
-              </p>
-            </div>
-          </li>
-          <li class="dropdown__item">
-            <div class="a-contents">
-              <p class="yohaku">
-                <a>Swap Digits</a>
-                <label class="toggle-button" title="桁数を増やす">
-                  <input type="checkbox" onclick="decimalPointDisplay()" id="swapDigits" style="cursor: pointer;">
-                </label>
-                <a>Lap OFF</a>
-                <label class="toggle-button" title="ラップ機能をオフにする">
-                  <input type="checkbox" onclick="LapDisplay()" id="lapOff">
-                </label>
-              </p>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Swap Digits</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku">
+                    <label class="toggle-button" title="桁数を増やす">
+                      <input type="checkbox" onclick="decimalPointDisplay()" id="swapDigits" style="cursor: pointer;">
+                    </label>
+                  </p>
+                </div>
+              </div>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Lap OFF</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku">
+                    <label class="toggle-button" title="ラップ機能をオフにする">
+                      <input type="checkbox" onclick="LapDisplay()" id="lapOff" style="cursor: pointer;">
+                    </label>
+                  </p>
+                </div>
+              </div>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Analog Watch</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku">
+                    <label class="toggle-button" title="アナログ時計">
+                      <input type="checkbox" id="toggleBtn" style="cursor: pointer;">
+                    </label>
+                  </p>
+                </div>
+              </div>
             </div>
           </li>
           <li class="dropdown__item sei_only">
@@ -156,55 +251,69 @@
           </li>
           <li class="dropdown__item">
             <div class="a-contents">
-              <p class="yohaku"><a>Functions</a>
-                <button onclick="window.open('#', '_blank', 'location=no')" class="button-sousyoku" title="新しいタブで開く">New Tab</button>
-                <button id="fullScreen" class="button-sousyoku" title="フルスクリーンモードをオンにする">⛶ FSP</button>
-                <button id="exitFullScreen" class="button-sousyoku" title="フルスクリーンモードをオフにする">⿻ Exit FSP</button>
-                <script>
-                  document.addEventListener("DOMContentLoaded", function() {
-                    const fullScreenBtn = document.getElementById("fullScreen");
-                    const exitFullScreenBtn = document.getElementById("exitFullScreen");
-                    // 初期状態: fullScreenボタンを表示、exitFullScreenボタンを非表示
-                    fullScreenBtn.style.display = "inline-block";
-                    exitFullScreenBtn.style.display = "none";
-                    fullScreenBtn.addEventListener("click", function() {
-                      fullScreenBtn.style.display = "none";
-                      exitFullScreenBtn.style.display = "inline-block";
-                    });
-                    exitFullScreenBtn.addEventListener("click", function() {
-                      exitFullScreenBtn.style.display = "none";
-                      fullScreenBtn.style.display = "inline-block";
-                    });
-                  });
-                </script>
-              </p>
-            </div>
-          </li>
-          <li class="dropdown__item">
-            <div class="a-contents">
-              <div class="yohaku" id="fontSetting"><a>Font Settings</a>
-              </div>
-              <div class="yohaku">
-                <div class="scroll">
-                  <!-- <input type="radio" name="font" id="cursive" style="display: none;"></input><label for="cursive" class="fontlabel">BOLD</label> -->
-                  <input type="radio" name="font" id="notosans" style="display: none;"></input><label for="notosans" class="fontlabel" title="Noto Sans">Noto Sans</label>
-                  <input type="radio" name="font" id="serif" style="display: none;"></input><label for="serif" class="fontlabel" title="Zen Old Mincho">Serif</label>
-                  <input type="radio" name="font" id="verdana" style="display: none;"></input><label for="verdana" class="fontlabel" title="Verdana">Verdana</label>
-                  <!-- <input type="radio" name="font" id="googlesans" style="display: none;"></input><label for="googlesans" class="fontlabel">Google Sans</label> -->
-                  <input type="radio" name="font" id="roboto" style="display: none;"></input><label for="roboto" class="fontlabel" title="Roboto">Roboto</label>
-                  <input type="radio" name="font" id="jersey" style="display: none;"></input><label for="jersey" class="fontlabel" title="Jersey 10 Charted">Jersey 10 Charted</label>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Functions</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku">
+                    <button onclick="window.open('#', '_blank', 'location=no')" class="button-sousyoku" title="新しいタブで開く">New
+                      Tab</button>
+                    <button id="fullScreen" class="button-sousyoku" title="フルスクリーンモードをオンにする">⛶ FSP</button>
+                    <button id="exitFullScreen" class="button-sousyoku" title="フルスクリーンモードをオフにする">⿻ Exit FSP</button>
+                    <script>
+                      document.addEventListener("DOMContentLoaded", function() {
+                        const fullScreenBtn = document.getElementById("fullScreen");
+                        const exitFullScreenBtn = document.getElementById("exitFullScreen");
+                        fullScreenBtn.style.display = "inline-block";
+                        exitFullScreenBtn.style.display = "none";
+                        fullScreenBtn.addEventListener("click", function() {
+                          fullScreenBtn.style.display = "none";
+                          exitFullScreenBtn.style.display = "inline-block";
+                        });
+                        exitFullScreenBtn.addEventListener("click", function() {
+                          exitFullScreenBtn.style.display = "none";
+                          fullScreenBtn.style.display = "inline-block";
+                        });
+                      });
+                    </script>
+                  </p>
                 </div>
               </div>
             </div>
           </li>
           <li class="dropdown__item">
             <div class="a-contents">
-              <div class="yohaku">
-                <details>
-                  <summary class="summary-contents" title="フォントの拡張設定を開閉する"><a>Advanced Font Settings</a></summary>
+              <p class="midashi"><a>Font Settings</a></p>
+              <div class="sayu">
+                <div class="left">
+                  <p class="yohaku">
+                    <a>Font</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <div class="yohaku">
+                    <div class="scroll">
+                      <input type="radio" name="font" id="notosans" style="display: none;"></input><label for="notosans" class="fontlabel" title="Noto Sans">Noto Sans</label>
+                      <input type="radio" name="font" id="serif" style="display: none;"></input><label for="serif" class="fontlabel" title="Zen Old Mincho">Serif</label>
+                      <input type="radio" name="font" id="verdana" style="display: none;"></input><label for="verdana" class="fontlabel" title="Verdana">Verdana</label>
+                      <input type="radio" name="font" id="roboto" style="display: none;"></input><label for="roboto" class="fontlabel" title="Roboto">Roboto</label>
+                      <input type="radio" name="font" id="jersey" style="display: none;"></input><label for="jersey" class="fontlabel" title="Jersey 10 Charted">Jersey 10 Charted</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sayu">
+                <div class="left">
                   <p class="yohaku">
                     <a>Font Weight</a>
-                    <input type="range" id="cssValueV" min="100" max="900" step="100" value="400" class="ranges" />
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku">
+                    <input type="range" id="cssValueV" min="100" max="900" step="100" value="400" class="rangesN" />
                     <script>
                       document.getElementById("cssValueV").addEventListener("input", function() {
                         const property = "font-weight";
@@ -215,10 +324,17 @@
                       });
                     </script>
                   </p>
+                </div>
+              </div>
+              <div class="sayu">
+                <div class="left">
                   <p class="yohaku">
-                    Font Size
-                    </a>
-                    <input type="range" id="cssValue" min="0" max="32" step="1" value="16" class="ranges" />
+                    <a>Font Size</a>
+                  </p>
+                </div>
+                <div class="right">
+                  <p class="yohaku">
+                    <input type="range" id="cssValue" min="0" max="24" step="1" value="16" class="rangesN" />
                     <script>
                       document.getElementById("cssValue").addEventListener("input", function() {
                         const property = "font-size";
@@ -233,20 +349,18 @@
                       });
                     </script>
                   </p>
-                  <p class="yohaku">
-                    <input type="checkbox" id="italic" name="italic"/><label for="italic"> Italic</label>｜<input type="checkbox" id="gray" name="gray"/><label for="gray"> Grayscale</label>｜<input type="checkbox" id="revc" name="revc"/><label for="revc"> Reversed Color</label><br><input type="checkbox" id="contrast" name="contrast"/><label for="contrast"> High Contrast</label>｜<input type="checkbox" id="rotate" name="rotate"/><label for="rotate"> Color Rotate</label><br><input type="checkbox" id="sepia" name="sepia"/><label for="sepia"> Sepia</label>｜<input type="checkbox" id="saturate" name="saturate"/><label for="saturate"> Saturate</label>｜<input type="checkbox" id="blur" name="blur"/><label for="blur"> Blur</label><br><input type="checkbox" id="shadow" name="shadow"/><label for="shadow"> Drop Shadow</label>｜<input type="checkbox" id="bright" name="bright"/><label for="bright"> Brightness</label>
-                  </p>
-                </details>
+                </div>
               </div>
             </div>
           </li>
           <li class="dropdown__item_noborder">
             <div class="a-contents">
-              <div class="yohaku">
+              <div class="midashi-nodeco">
                 <details>
-                  <summary class="summary-contents" title="情報を開閉する"><a>Information｜</a><a class="inside">Ver.7.42.3(2025.4.2)</a></summary>
-                  <p class="yohaku">
-                    <a class="inside" id="forurl" href="https://www.tadr-tech.info/kikaku/htu" target="_blank" title="使い方">How to use(Ja)</a>｜<a class="inside" id="forurl" href="https://www.tadr-tech.info/blog" target="_blank" title="リリース情報">Release Information</a>｜<a class="inside" id="forurl" href="release.html" target="_blank" title="リリースノート">Release Notes</a>｜<a class="inside">Tabatch by TADR, SEI2423 (INPO)</a>｜<a class="inside">Music by </a><a class="inside" id="forurl" href="https://amachamusic.chagasi.com" target="_blank">甘茶の音楽工房様</a>
+                  <summary class="summary-contents" title="情報を開閉する"><a>Information｜</a><a class="inside">Ver.8.00.0(2025.5.19)</a></summary>
+                  <p class="midashi-nodeco"></p>
+                  <a class="inside" id="forurl" href="https://www.tadr-tech.info/kikaku/htu" target="_blank" title="使い方">How to use(Ja)</a>｜<a class="inside" id="forurl" href="https://www.tadr-tech.info/blog" target="_blank" title="リリース情報">Release Information</a>｜<a class="inside" id="forurl" href="release.html" target="_blank" title="リリースノート">Release
+                    Notes</a>｜<a class="inside">Tabatch by TADR, SEI2423 (INPO)</a>｜<a class="inside">Music by </a><a class="inside" id="forurl" href="https://amachamusic.chagasi.com" target="_blank">甘茶の音楽工房様</a>
                   </p>
                 </details>
               </div>
@@ -266,9 +380,11 @@
             <path fill="var(--mainColor)" d="m359.0551 15.748346l0 0c0 -8.697571 7.0507812 -15.748346 15.748352 -15.748346l195.27496 0c4.176697 0 8.182373 1.659196 11.135742 4.612584c2.9534302 2.9533877 4.61261 6.9590416 4.61261 11.135762l0 62.9915c0 8.697571 -7.0507812 15.748344 -15.748352 15.748344l-195.27496 0c-8.697571 0 -15.748352 -7.0507736 -15.748352 -15.748344z" fill-rule="evenodd" />
             <path fill="var(--mainColor)" d="m84.888954 203.94382l0 0c-4.476349 -5.32872 -3.7815094 -13.27269 1.5519714 -17.743347l96.52828 -80.91264c2.5612183 -2.1468964 5.8714905 -3.1893158 9.20256 -2.8979568c3.33107 0.29135895 6.41008 1.8926392 8.559708 4.451584l32.419617 38.59278c4.476349 5.32872 3.7815094 13.27269 -1.5519714 17.743347l-96.528275 80.91264c-5.333481 4.4706726 -13.285919 3.7750854 -17.762268 -1.5536194z" fill-rule="evenodd" />
           </g>
-        </svg></svg><a class="suma">Stopwatch</a></label>
+        </svg>
+        <!--<a class="suma">Stopwatch</a>-->
+      </label>
       <div class="content_class">
-        <div class="timer-contents">
+        <div class="timer-contents" title="タップしてツールバーを表示/非表示">
           <center>
             <span id="STWtime" class="timer-contents">00:00:00</span><span id="STWmtime" class="timer-contents-a">.000</span>
             <div id="countdown"></div>
@@ -282,7 +398,7 @@
           <input id="STWLapBtn" type="button" value="lap" class="button-select" onclick="STWLap()" style="height: 3rem ; border-radius: 100vh;" disabled>
         </div>
         <center>
-          <div id="STWLapDisp">
+          <div id="STWLapDisp" class="lapdisp">
           </div>
         </center>
       </div>
@@ -300,13 +416,71 @@
             <path fill="var(--mainColor)" d="m755.39386 397.91208c-8.193237 0 -15.227051 1.5458984 -21.10144 4.637665c-5.8743896 3.0724792 -10.386475 7.6135254 -13.536255 13.623199c-3.1497192 5.990326 -4.7246094 13.313995 -4.7246094 21.971008l0 8.724609l29.768127 0c0 -1.2946777 0 -2.5603638 0 -3.7970886c0 -1.2560425 0 -2.4830933 0 -3.6811523c0 -5.2173767 0.61834717 -9.487915 1.8550415 -12.811584c1.2560425 -3.3236694 3.8357544 -4.985504 7.7391357 -4.985504c4.0386353 0 6.801941 1.487915 8.289856 4.463745c1.487915 2.956543 2.2318726 7.227051 2.2318726 12.811615c0 7.2463684 -1.0724487 12.589355 -3.2174072 16.028961c-2.1256104 3.4396057 -6.338135 5.159424 -12.637634 5.159424l-4.8115845 0l0 20.463745l5.536194 0c6.1642456 0.13528442 10.222229 2.077301 12.173889 5.826111c1.9710083 3.7294617 2.956543 9.14975 2.956543 16.260864c0 4.270508 -0.24151611 7.835724 -0.7246094 10.695648c-0.46380615 2.8405762 -1.3816528 4.97583 -2.753662 6.4057617c-1.3719482 1.4299927 -3.420288 2.1449585 -6.1448975 2.1449585c-2.7246704 0 -4.8599243 -0.67633057 -6.4058228 -2.0289917c-1.5458984 -1.3720093 -2.6183472 -3.5458984 -3.2173462 -6.5217285c-0.5797119 -2.9758606 -0.8695679 -6.8309326 -0.8695679 -11.565216c0 -0.9661865 0 -2.0386658 0 -3.2174072c0 -1.1787415 0 -1.8357239 0 -1.9710083l-29.768127 0l0 5.1884155c0 8.888855 1.2174072 16.753632 3.6521606 23.594208c2.4348145 6.821228 6.531433 12.135254 12.289856 15.942017c5.758484 3.7874146 13.690796 5.6811523 23.79712 5.6811523c9.603821 0 17.313965 -1.9227295 23.130371 -5.7681274c5.8164673 -3.864746 10.0 -9.178772 12.55072 -15.942017c2.5700684 -6.782593 3.8551025 -14.560394 3.8551025 -23.333344c0 -6.898529 -0.7729492 -12.570038 -2.3188477 -17.014465c-1.5458984 -4.444458 -3.6618042 -7.9710083 -6.3478394 -10.579712c-2.666626 -2.6280212 -5.661804 -4.5314026 -8.985474 -5.710144c4.869568 -1.3139954 9.02417 -4.8212585 12.463745 -10.5217285c3.4589233 -5.7005005 5.1884155 -12.763306 5.1884155 -21.188416c0 -8.541046 -1.6038818 -15.690796 -4.8115845 -21.44925c-3.2077637 -5.7584534 -7.7874756 -10.115936 -13.739136 -13.072449c-5.932373 -2.9758606 -13.053162 -4.4637756 -21.362305 -4.4637756z" fill-rule="evenodd" />
             <path fill="var(--mainColor)" d="m189.13733 420.15176c2.7246246 0 4.7342834 0.8695679 6.0289764 2.6087036c1.3140106 1.7197876 2.202896 3.9710083 2.6666718 6.753601c0.483078 2.7826233 0.72462463 5.8357544 0.72462463 9.159424l0 23.507233c-0.83091736 1.1980591 -1.9613495 2.4541016 -3.3912964 3.7681274c-1.4106293 1.2946777 -3.3043518 1.9420166 -5.6811523 1.9420166c-3.0917969 0 -5.294693 -0.9758301 -6.6087036 -2.9275208c-1.2946777 -1.9710083 -2.0966187 -4.7053223 -2.4057922 -8.202911c-0.28985596 -3.497589 -0.43478394 -7.565216 -0.43478394 -12.202881c0 -5.3333435 0.20289612 -9.806763 0.6087036 -13.420288c0.42510986 -3.632843 1.2850189 -6.367157 2.5796967 -8.202881c1.3140106 -1.855072 3.2850342 -2.7826233 5.9130554 -2.7826233zm0 -21.884033c-9.623184 0 -17.343002 2.0193176 -23.159424 6.057953c-5.8164215 4.0386353 -9.999985 9.710144 -12.55072 17.014496c-2.5507202 7.2850037 -3.8260803 15.980652 -3.8260803 26.086945c0 7.8260803 1.004837 15.062805 3.0144958 21.710114c2.0289764 6.647339 5.352646 11.932373 9.971008 15.855072c4.504532 3.810089 10.403687 5.715149 17.697433 5.715149c0.21557617 0 0.43237305 -0.0016784668 0.6503906 -0.005004883c3.922699 -0.2511902 7.4492645 -1.0241394 10.579697 -2.3188477c3.149765 -1.3139954 5.497589 -3.2173767 7.0434723 -5.7101135l0 12.811584c0 7.3623047 -0.21255493 13.159393 -0.63768005 17.391266c-0.40579224 4.2125854 -1.2657013 7.1497803 -2.5796967 8.811584c-1.294693 1.6618652 -3.3043518 2.4927979 -6.0289917 2.4927979c-4.0386505 0 -6.570038 -1.3912964 -7.5941925 -4.17395c-1.004837 -2.80188 -1.5072479 -7.111084 -1.5072479 -12.927521l-27.768112 0c0 0.34783936 0 0.73431396 0 1.1594238c0 0.40579224 0 0.79226685 0 1.1594238c0 8.057953 1.1207733 14.85025 3.36232 20.3768c2.2608643 5.5265503 6.057968 9.719788 11.391296 12.579712c5.352661 2.8405762 12.666672 4.2608643 21.942032 4.2608643c10.685974 0 18.869553 -2.1062622 24.550705 -6.3188477c5.700485 -4.2125244 9.652176 -10.0 11.855072 -17.362305c2.202896 -7.3623047 3.3043518 -15.739105 3.3043518 -25.130432l0 -53.768066c0 -9.2560425 -1.3430023 -17.294678 -4.0289917 -24.115936c-2.6666718 -6.840576 -6.908203 -12.154602 -12.724625 -15.942047c-5.816437 -3.8067322 -13.468597 -5.7101135 -22.956512 -5.7101135z" fill-rule="evenodd" />
           </g>
-        </svg> <a class="suma">Watch</a>
+        </svg>
+        <!--<a class="suma">Watch</a> -->
       </label>
       <div class="content_class">
-        <div id="WATtime" align="center" class="timer-contents">
 
+        <div id="digitalid" class="digiwatch">
+          <div id="WATtime" align="center" class="timer-contents" title="タップしてツールバーを表示/非表示"></div>
+          <p id="WATday" class="WATday" onclick="setWATLang()" style="text-align:center" title="日付を表示　Spaceキー / クリックで表示切替"></p>
         </div>
-        <p id="WATday" class="WATday" onclick="setWATLang()" style="text-align:center" title="日付を表示　Spaceキー / クリックで表示切替"></p>
+        <div id="analogid" class="anawatch">
+          <div class="anaclock" id="anaclock"></div>
+          <script>
+            const anaclock = document.getElementById("anaclock");
+            const ananumbers = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+            ananumbers.forEach((num, i) => {
+              const angle = (i * 30) * (Math.PI / 180);
+              const x = 40 + Math.sin(angle) * 32;
+              const y = 40 - Math.cos(angle) * 32;
+              const div = document.createElement("div");
+              div.className = "ananumber";
+              div.style.left = `${x}vmin`;
+              div.style.top = `${y}vmin`;
+              div.textContent = num;
+              anaclock.appendChild(div);
+            });
+            for (let i = 0; i < 60; i++) {
+              if (i % 5 !== 0) {
+                const angle = (i * 6) * (Math.PI / 180);
+                const x = 40 + Math.sin(angle) * 32;
+                const y = 40 - Math.cos(angle) * 32;
+                const anatick = document.createElement("div");
+                anatick.className = "anatick";
+                anatick.style.left = `${x}vmin`;
+                anatick.style.top = `${y}vmin`;
+                anatick.style.transform = `translate(-50%, -50%) rotate(${i * 6}deg)`;
+                anaclock.appendChild(anatick);
+              }
+            }
+
+            function createHand(className) {
+              const hand = document.createElement("div");
+              hand.className = `hand ${className}`;
+              anaclock.appendChild(hand);
+              return hand;
+            }
+            const hourHand = createHand("anahour");
+            const minuteHand = createHand("anaminute");
+            const secondHand = createHand("anasecond");
+
+            function updateClock() {
+              const now = new Date();
+              const anahours = now.getHours() % 12;
+              const anaminutes = now.getMinutes();
+              const anaseconds = now.getSeconds();
+              const hourDeg = (anahours + anaminutes / 60) * 30;
+              const minuteDeg = (anaminutes + anaseconds / 60) * 6;
+              const secondDeg = anaseconds * 6;
+              hourHand.style.transform = `translate(-50%, 0) rotate(${hourDeg}deg)`;
+              minuteHand.style.transform = `translate(-50%, 0) rotate(${minuteDeg}deg)`;
+              secondHand.style.transform = `translate(-50%, 0) rotate(${secondDeg}deg)`;
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+          </script>
+        </div>
       </div>
       <input type="radio" name="tab_name" id="TIMTab">
       <label class="tab_class" for="TIMTab" id="label3" title="タイマー"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0.00 0.00 1100.00 1100.00" class="svg-settings">
@@ -320,9 +494,11 @@
             <path fill="var(--mainColor)" d="m444.09448 472.44095l0 0c0 -15.655334 12.691132 -28.346466 28.346466 -28.346466l0 0c7.5179443 0 14.727966 2.9865112 20.043976 8.30249c5.315979 5.315979 8.30249 12.5260315 8.30249 20.043976l0 0c0 15.655304 -12.691162 28.346466 -28.346466 28.346466l0 0c-15.655334 0 -28.346466 -12.691162 -28.346466 -28.346466z" fill-rule="evenodd" />
             <path fill="var(--mainColor)" d="m781.07074 695.16425l76.5379 153.32312l-66.5246 55.84198l-137.6983 -101.98401z" fill-rule="evenodd" />
           </g>
-        </svg><a class="suma">Timer</a></label>
+        </svg>
+        <!--<a class="suma">Timer</a>-->
+      </label>
       <div class="content_class">
-        <div class="timer-contents" id="TIMtime">
+        <div class="timer-contents" id="TIMtime" title="タップしてツールバーを表示/非表示">
           <div id="largehour" class="time_display" style="display: inline-block; _display: inline;"><span id="TIMhour">00</span>
           </div>:<div id="largeminute" class="time_display" style="display: inline-block; _display: inline;"><span id="TIMmin">00</span>
           </div>:<div id="largesecond" class="time_display" style="display: inline-block; _display: inline;"><span id="TIMsec">30</span>
@@ -538,11 +714,30 @@
     }
     [change_bgColor, change_mainColor].forEach(x => x.addEventListener('change', set_color));
     document.getElementById('fullScreen').addEventListener('click', function() {
-      document.body.requestFullscreen();
+      const el = document.body;
+      if (el.requestFullscreen) {
+        el.requestFullscreen();
+      } else if (el.webkitRequestFullscreen) { // Safari
+        el.webkitRequestFullscreen();
+      } else if (el.msRequestFullscreen) { // IE11
+        el.msRequestFullscreen();
+      }
     });
     document.getElementById('exitFullScreen').addEventListener('click', function() {
-      document.exitFullscreen();
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) { // Safari
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) { // IE11
+        document.msExitFullscreen();
+      }
     });
+    //document.getElementById('fullScreen').addEventListener('click', function() {
+    // document.body.requestFullscreen();
+    //  });
+    //  document.getElementById('exitFullScreen').addEventListener('click', function() {
+    //     document.exitFullscreen();
+    //    });
     $fontSettingBtns.forEach($fontBtn => $fontBtn.addEventListener('click', e => {
       document.cookie = `font=${e.target.nextElementSibling.textContent}`;
     }));
@@ -752,7 +947,27 @@
     const $TIMhour = document.getElementById('TIMhour');
     const $TIMmin = document.getElementById('TIMmin');
     const $TIMsec = document.getElementById('TIMsec');
-    const audio = new Audio('/audio/sekibaku.mp3');
+    const audio = new Audio('audio/sekibaku.mp3');
+    let audioReady = false;
+
+    function prepareAudio() {
+      if (!audioReady) {
+        audio.play().then(() => {
+          audio.pause();
+          audio.currentTime = 0;
+          audioReady = true;
+          console.log('Audio prepared.');
+        }).catch((e) => {
+          console.error('音声の初期再生に失敗しました:', e);
+        });
+      }
+    }
+    document.addEventListener('click', prepareAudio, {
+      once: true
+    });
+    document.addEventListener('touchstart', prepareAudio, {
+      once: true
+    });
 
     function TIMMove(now) {
       if (!TIM.moving) return;
@@ -993,6 +1208,112 @@
         e.key == 'S' && e.altKey && e.ctrlKey && e.shiftKey && seiEdition(edition = (edition + 1) % 2);
       });
     }
+  </script>
+  <script>
+    const toggle = document.getElementById('toggleBtn');
+    const analogid = document.getElementById('analogid');
+    const digitalid = document.getElementById('digitalid');
+
+    function updateDisplay() {
+      if (toggle.checked) {
+        analogid.style.display = 'flex';
+        digitalid.style.display = 'none';
+      } else {
+        analogid.style.display = 'none';
+        digitalid.style.display = 'block';
+      }
+    }
+    toggle.addEventListener('change', updateDisplay);
+    updateDisplay();
+  </script>
+  <script>
+    const toggles = document.querySelectorAll('.timer-contents, .anawatch');
+    const tabs = document.querySelectorAll('.tab_class');
+    let isExpanded = true;
+    let animations = [];
+    let isAnimating = false;
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        if (isAnimating) return;
+        isAnimating = true;
+        const rootFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+        const expandedHeightPx = 3 * rootFontSize;
+        const collapsedHeightPx = 0;
+        const targetHeightPx = isExpanded ? collapsedHeightPx : expandedHeightPx;
+        animations.forEach(anim => anim.cancel());
+        animations = [];
+        let finishedCount = 0;
+        tabs.forEach(tab => {
+          const currentHeightPx = tab.getBoundingClientRect().height;
+          tab.style.height = `${currentHeightPx}px`;
+          requestAnimationFrame(() => {
+            const animation = tab.animate(
+              [{
+                  height: `${currentHeightPx}px`
+                },
+                {
+                  height: `${targetHeightPx}px`
+                }
+              ], {
+                duration: 300,
+                easing: 'ease',
+                fill: 'forwards'
+              }
+            );
+            animation.onfinish = () => {
+              tab.style.height = isExpanded ? '0rem' : '3rem';
+              finishedCount++;
+              if (finishedCount === tabs.length) {
+                isAnimating = false;
+                isExpanded = !isExpanded;
+              }
+            };
+            animations.push(animation);
+          });
+        });
+      });
+    });
+  </script>
+  <script>
+    let wakeLock = null;
+    async function requestWakeLock() {
+      try {
+        if ('wakeLock' in navigator) {
+          wakeLock = await navigator.wakeLock.request('screen');
+          document.getElementById('status').textContent = 'Wake Lock が有効です';
+          console.log('Wake Lock が有効になりました');
+          wakeLock.addEventListener('release', () => {
+            console.log('Wake Lock が解除されました');
+            document.getElementById('status').textContent = 'Wake Lock が解除されました（再取得します）';
+            requestWakeLock();
+          });
+        } else {
+          console.warn('Wake Lock API は未サポート');
+          document.getElementById('status').textContent = 'Wake Lock API はこのブラウザでサポートされていません';
+        }
+      } catch (err) {
+        console.error(`Wake Lock エラー: ${err.name} - ${err.message}`);
+        document.getElementById('status').textContent = `Wake Lock エラー: ${err.message}`;
+      }
+    }
+
+    function setupWakeLock() {
+      requestWakeLock();
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible') {
+          requestWakeLock();
+        }
+      });
+    }
+
+    function init() {
+      const onceOpts = {
+        once: true
+      };
+      document.addEventListener('click', setupWakeLock, onceOpts);
+      document.addEventListener('touchstart', setupWakeLock, onceOpts);
+    }
+    window.addEventListener('load', init);
   </script>
 </body>
 
