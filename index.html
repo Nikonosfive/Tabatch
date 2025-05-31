@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name=”viewport” content=”width=device-width,initial-scale=1″>
   <meta name="application-name" content="Tabatch">
-  <meta name="theme-color" content="var(--bgColor)">
+  <meta name="theme-color" content=var(--bgColor)>
   <meta name="description" content="Tabatch / タバッチ！｜軽量・多機能な時間管理ツール。">
   <meta name="keywords" content="Tabatch, Watch, watch browser, T.A Design Room, TADR, Online Watch, 時計">
   <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -360,7 +360,7 @@
             <div class="a-contents">
               <div class="midashi-nodeco">
                 <details>
-                  <summary class="summary-contents" title="情報を開閉する"><a>Information｜</a><a class="inside">Ver.8.00.1(2025.5.31)</a></summary>
+                  <summary class="summary-contents" title="情報を開閉する"><a>Information｜</a><a class="inside">Ver.8.00.2(2025.5.31)</a></summary>
                   <p class="midashi-nodeco"></p>
                   <a class="inside" id="forurl" href="https://www.tadr-tech.info/kikaku/htu" target="_blank" title="使い方">How to use(Ja)</a>｜<a class="inside" id="forurl" href="https://www.tadr-tech.info/blog" target="_blank" title="リリース情報">Release Information</a>｜<a class="inside" id="forurl" href="release.html" target="_blank" title="リリースノート">Release
                     Notes</a>｜<a class="inside">Tabatch by TADR, SEI2423 (INPO)</a>｜<a class="inside">Music by </a><a class="inside" id="forurl" href="https://amachamusic.chagasi.com" target="_blank">甘茶の音楽工房様</a>
@@ -1318,6 +1318,22 @@
     }
     window.addEventListener('load', init);
   </script>
+  <script> 
+    // クエリ
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const bg = params.get('bg');
+  const main = params.get('main');
+  const isValidColor = (color) => /^#([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/.test(color);
+  if (bg && isValidColor(bg)) {
+    document.documentElement.style.setProperty('--bgColor', bg);
+  }
+  if (main && isValidColor(main)) {
+    document.documentElement.style.setProperty('--mainColor', main);
+  }
+})();
+</script>
+
 </body>
 
 </html>
