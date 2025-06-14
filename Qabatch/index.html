@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qabatch by TADR</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000000;
+        }
+        #clock {
+            font-size: 20vw;
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock"></div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function hexToRgba(hex) {
+            const r = parseInt(hex.slice(0, 2), 16);
+            const g = parseInt(hex.slice(2, 4), 16);
+            const b = parseInt(hex.slice(4, 6), 16);
+            const a = parseInt(hex.slice(6, 8), 16) / 255;
+            return `rgba(${r}, ${g}, ${b}, ${a})`;
+        }
+
+        function applyColorsFromQuery() {
+            const params = new URLSearchParams(window.location.search);
+            const fontColor = params.get('f');
+            const bgColor = params.get('b');
+            
+            if (fontColor && fontColor.length === 8) {
+                document.getElementById('clock').style.color = hexToRgba(fontColor);
+            }
+            if (bgColor && bgColor.length === 8) {
+                document.body.style.backgroundColor = hexToRgba(bgColor);
+            }
+        }
+
+        applyColorsFromQuery();
+        updateClock();
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
