@@ -2,7 +2,7 @@
   "short_name": "Tabatch",
   "name": "Tabatch",
   "description": "Tabatch is a multiple time console tool. (c)TADR, SEI2423",
-  "version": "8.00.0",
+  "version": "8.10.0",
   "icons": [
       {
         "src": "img/logo_96.png",
