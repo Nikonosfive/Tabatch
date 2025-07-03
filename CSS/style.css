@@ -284,6 +284,7 @@ html:has(#bright:checked) {
 @media (max-aspect-ratio: 0.67) {
   html {
     font-size: 4vw;
+    overflow: hidden;
   }
 
   .WATday {
